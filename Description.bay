@@ -1,0 +1,205 @@
+/*!
+ *  BayLang Technology
+ *
+ *  (c) Copyright 2016-2025 "Ildar Bikmamatov" <support@bayrell.org>
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+namespace Runtime.Documentation;
+
+class Description
+{
+	/**
+	 * Returns Russian content
+	 */
+	static Map contentRu() =>
+	{
+		"title": "Документация по BayLang",
+		"description": "Полное руководство по технологии BayLang: Язык программирования, Интеллектуальные системы, Визуальный конструктор и многое другое",
+		"items": [
+			{
+				"name": "baylang",
+				"title": "Язык программирования BayLang",
+				"description": "Подробное руководство по использованию BayLang для разработки современных веб-приложений",
+				"menu_title": "BayLang",
+				"items": [
+					{
+						"name": "about",
+						"title": "Язык программирования BayLang",
+					},
+					{
+						"name": "install",
+						"title": "Установка BayLang",
+					},
+					{
+						"name": "project_php",
+						"title": "Настройка PHP проекта",
+					},
+					{
+						"name": "syntax",
+						"title": "Синтаксис",
+					},
+					{
+						"name": "string",
+						"title": "Строки",
+					},
+					{
+						"name": "vector",
+						"title": "Вектора",
+					},
+					{
+						"name": "map",
+						"title": "Map",
+					},
+					{
+						"name": "template",
+						"title": "Шаблоны и компоненты",
+					},
+					{
+						"name": "model",
+						"title": "Модели",
+					},
+				],
+			},
+			{
+				"name": "cloud-os",
+				"title": "Облачная операционная система BAYRELL Cloud OS",
+				"description": "Подробное руководство по использованию Облачной ОС",
+				"menu_title": "Cloud OS",
+				"items": [
+					{
+						"name": "about",
+						"title": "Облачная ОС",
+					},
+					{
+						"name": "install-desktop",
+						"title": "Установка тонкого клиента на десктоп",
+					},
+					{
+						"name": "install-server",
+						"title": "Установка на сервер",
+					},
+				],
+			},
+			{
+				"name": "constructor",
+				"title": "Конструктор BayLang",
+				"description": "Подробное руководство по использованию конструктора BayLang для разработки современных веб-приложений",
+				"items": [
+					{
+						"name": "about",
+						"title": "Конструктор",
+					},
+				],
+			},
+			{
+				"name": "framework",
+				"title": "Веб фреймворк BayLang",
+				"description": "Подробное руководство по использованию BayLang для разработки современных веб-приложений",
+				"items": [
+					{
+						"name": "about",
+						"title": "Веб фреймворк",
+					},
+					{
+						"name": "hooks",
+						"title": "Hooks",
+						"items": [
+							{
+								"name": "components",
+								"title": "Components"
+							},
+							{
+								"name": "detect_language",
+								"title": "DetectLanguage"
+							},
+							{
+								"name": "detect_theme",
+								"title": "DetectTheme"
+							},
+							{
+								"name": "page_not_found",
+								"title": "PageNotFound"
+							},
+							{
+								"name": "setup_layout",
+								"title": "SetupLayout"
+							},
+						],
+					},
+				],
+			},
+			{
+				"name": "widget",
+				"title": "Базовые виджеты",
+				"description": "Готовые блоки для создания веб приложений",
+				"items": [
+					{
+						"name": "about",
+						"title": "Runtime.Widget",
+					},
+					{
+						"name": "styles",
+						"title": "Стили веб сайта",
+					},
+					{
+						"name": "theme_dark",
+						"title": "Темная тема",
+					},
+					{
+						"name": "basic",
+						"title": "Базовые виджеты",
+						"items": [
+							{
+								"name": "button",
+								"title": "Runtime.Widget.Button",
+								"menu_title": "Button",
+							},
+							{
+								"name": "image",
+								"title": "Runtime.Widget.Image",
+								"menu_title": "Image",
+							},
+							{
+								"name": "input",
+								"title": "Runtime.Widget.Input",
+								"menu_title": "Input",
+							},
+							{
+								"name": "select",
+								"title": "Runtime.Widget.Select",
+								"menu_title": "Select",
+							},
+							{
+								"name": "textarea",
+								"title": "Runtime.Widget.TextArea",
+								"menu_title": "TextArea",
+							},
+							{
+								"name": "texteditable",
+								"title": "Runtime.Widget.TextEditable",
+								"menu_title": "TextEditable",
+							},
+							{
+								"name": "upload_file_button",
+								"title": "Runtime.Widget.UploadFileButton",
+								"menu_title": "UploadFileButton",
+							},
+						],
+					},
+				],
+			},
+		],
+	};
+}

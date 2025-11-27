@@ -1,7 +1,7 @@
 # Веб фрэймворк BayLang Technology
 
 **Web-фреймворк BayLang** обеспечивает кроссплатформенную разработку, позволяя запускать код на:
-- Backend (Laravel, PHP, Node.js, Python)
+- Backend (WordPress, Laravel, PHP, Node.js, Python)
 - Frontend (JavaScript, Vue.js)
 - WordPress
 
