@@ -1,29 +1,20 @@
 import os
 
-files = [
-    "index.md",
-    "baylang/about.md",
-    "baylang/install.md",
-    "baylang/map.md",
-    "baylang/model.md",
-    "baylang/project.md",
-    "baylang/string.md",
-    "baylang/syntax.md",
-    "baylang/template.md",
-    "baylang/vector.md",
-    "cloud-os/about.md",
-    "cloud-os/install-desktop.md",
-    "cloud-os/install-server.md",
-    "cloud-os/templates.md",
-    "constructor/about.md",
-    "framework/about.md",
-]
+def list_files_recursively(directory):
+    result = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            result.append(os.path.join(root, file))
+    return result
+
+folder = "en"
+files = list_files_recursively(folder)
 
 output_file = "baylang.md"
 with open(output_file, "w", encoding="utf-8") as outfile:
     for filename in files:
-        if os.path.exists("ru/" + filename):
-            with open("ru/" + filename, "r", encoding="utf-8") as file:
-                outfile.write(f"# Содержимое файла: {filename}\n\n") 
+        if os.path.exists(filename):
+            with open(filename, "r", encoding="utf-8") as file:
+                outfile.write(f"# File: {filename}\n\n") 
                 outfile.write(file.read())
                 outfile.write("\n\n")

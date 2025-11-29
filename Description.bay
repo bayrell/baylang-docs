@@ -21,6 +21,195 @@ namespace Runtime.Documentation;
 class Description
 {
 	/**
+	 * Returns english content
+	 */
+	static Map contentEn() =>
+	{
+		"title": "BayLang Documentation",
+		"description": "Complete guide to BayLang technology: Programming Language, Intelligent Systems, Visual Constructor and much more",
+		"items": [
+			{
+				"name": "baylang",
+				"title": "BayLang Programming Language",
+				"description": "Detailed guide on using BayLang for developing modern web applications",
+				"menu_title": "BayLang",
+				"items": [
+					{
+						"name": "index",
+						"title": "BayLang Technology Platform",
+						"file_name": "index.md",
+					},
+					{
+						"name": "about",
+						"title": "BayLang Programming Language",
+					},
+					{
+						"name": "install",
+						"title": "Installing BayLang",
+					},
+					{
+						"name": "project_php",
+						"title": "Setting up a PHP Project",
+					},
+					{
+						"name": "syntax",
+						"title": "Syntax",
+					},
+					{
+						"name": "string",
+						"title": "Strings",
+					},
+					{
+						"name": "vector",
+						"title": "Vectors",
+					},
+					{
+						"name": "map",
+						"title": "Map",
+					},
+					{
+						"name": "template",
+						"title": "Templates and Components",
+					},
+					{
+						"name": "model",
+						"title": "Models",
+					},
+				],
+			},
+			{
+				"name": "cloud-os",
+				"title": "BAYRELL Cloud OS",
+				"description": "Detailed guide on using Cloud OS",
+				"menu_title": "Cloud OS",
+				"items": [
+					{
+						"name": "about",
+						"title": "Cloud OS",
+					},
+					{
+						"name": "install-desktop",
+						"title": "Installing Thin Client on Desktop",
+					},
+					{
+						"name": "install-server",
+						"title": "Server Installation",
+					},
+				],
+			},
+			{
+				"name": "constructor",
+				"title": "BayLang Constructor",
+				"description": "Detailed guide on using BayLang constructor for developing modern web applications",
+				"items": [
+					{
+						"name": "about",
+						"title": "Constructor",
+					},
+				],
+			},
+			{
+				"name": "framework",
+				"title": "BayLang Web Framework",
+				"description": "Detailed guide on using BayLang for developing modern web applications",
+				"items": [
+					{
+						"name": "about",
+						"title": "Web Framework",
+					},
+					{
+						"name": "hooks",
+						"title": "Hooks",
+						"items": [
+							{
+								"name": "components",
+								"title": "Components"
+							},
+							{
+								"name": "detect_language",
+								"title": "DetectLanguage"
+							},
+							{
+								"name": "detect_theme",
+								"title": "DetectTheme"
+							},
+							{
+								"name": "page_not_found",
+								"title": "PageNotFound"
+							},
+							{
+								"name": "setup_layout",
+								"title": "SetupLayout"
+							},
+						],
+					},
+				],
+			},
+			{
+				"name": "widget",
+				"title": "Widgets",
+				"description": "Ready-made blocks for creating web applications",
+				"items": [
+					{
+						"name": "about",
+						"title": "Runtime.Widget",
+					},
+					{
+						"name": "styles",
+						"title": "Website Styles",
+					},
+					{
+						"name": "theme_dark",
+						"title": "Dark Theme",
+					},
+					{
+						"name": "basic",
+						"title": "Basic Widgets",
+						"items": [
+							{
+								"name": "button",
+								"title": "Runtime.Widget.Button",
+								"menu_title": "Button",
+							},
+							{
+								"name": "image",
+								"title": "Runtime.Widget.Image",
+								"menu_title": "Image",
+							},
+							{
+								"name": "input",
+								"title": "Runtime.Widget.Input",
+								"menu_title": "Input",
+							},
+							{
+								"name": "select",
+								"title": "Runtime.Widget.Select",
+								"menu_title": "Select",
+							},
+							{
+								"name": "textarea",
+								"title": "Runtime.Widget.TextArea",
+								"menu_title": "TextArea",
+							},
+							{
+								"name": "texteditable",
+								"title": "Runtime.Widget.TextEditable",
+								"menu_title": "TextEditable",
+							},
+							{
+								"name": "upload_file_button",
+								"title": "Runtime.Widget.UploadFileButton",
+								"menu_title": "UploadFileButton",
+							},
+						],
+					},
+				],
+			},
+		],
+	};
+	
+	
+	/**
 	 * Returns Russian content
 	 */
 	static Map contentRu() =>
