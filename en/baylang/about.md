@@ -81,6 +81,10 @@ class IndexPageModel extends BaseModel
 
 ## History of Creation
 
+[25 Nov 2025] Release 1.0 version
+
+[15 May 2025] Start 1.0 version
+
 [05 Feb 2024] 0.12.4 - Added support for line breaks in HTML components, higher-order functions for expressions, fixed CSS media query operation.
 
 [27 Dec 2024] 0.12.3 - Release of BayLang Constructor for WordPress.

@@ -118,6 +118,10 @@ class Description
 						"title": "Web Framework",
 					},
 					{
+						"name": "serialize",
+						"title": "Data serialization",
+					},
+					{
 						"name": "hooks",
 						"title": "Hooks",
 						"items": [
@@ -300,6 +304,10 @@ class Description
 					{
 						"name": "about",
 						"title": "Веб фреймворк",
+					},
+					{
+						"name": "serialize",
+						"title": "Сериализация данных",
 					},
 					{
 						"name": "hooks",
