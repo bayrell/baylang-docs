@@ -109,6 +109,35 @@ class Description
 				],
 			},
 			{
+				"name": "orm",
+				"title": "Object-Relational Mapping",
+				"description": "ORM guide",
+				"items":
+				[
+					{
+						"name": "about",
+						"title": "About ORM",
+						"menu_title": "About",
+					},
+					{
+						"name": "connection",
+						"title": "Connection",
+					},
+					{
+						"name": "query",
+						"title": "Query",
+					},
+					{
+						"name": "record",
+						"title": "Record",
+					},
+					{
+						"name": "relation",
+						"title": "Relation",
+					},
+				]
+			},
+			{
 				"name": "framework",
 				"title": "BayLang Web Framework",
 				"description": "Detailed guide on using BayLang for developing modern web applications",
@@ -232,10 +261,6 @@ class Description
 						"title": "Язык программирования BayLang",
 					},
 					{
-						"name": "install",
-						"title": "Установка BayLang",
-					},
-					{
 						"name": "project_php",
 						"title": "Настройка PHP проекта",
 					},
@@ -297,6 +322,34 @@ class Description
 				],
 			},
 			{
+				"name": "orm",
+				"title": "Object-Relational Mapping",
+				"description": "Руководство по работе с ORM",
+				"items": [
+					{
+						"name": "about",
+						"title": "About ORM",
+						"menu_title": "About",
+					},
+					{
+						"name": "connection",
+						"title": "Connection",
+					},
+					{
+						"name": "query",
+						"title": "Query",
+					},
+					{
+						"name": "record",
+						"title": "Record",
+					},
+					{
+						"name": "relation",
+						"title": "Relation",
+					},
+				],
+			},
+			{
 				"name": "framework",
 				"title": "Веб фреймворк BayLang",
 				"description": "Подробное руководство по использованию BayLang для разработки современных веб-приложений",
@@ -308,6 +361,20 @@ class Description
 					{
 						"name": "serialize",
 						"title": "Сериализация данных",
+					},
+					{
+						"name": "api",
+						"title": "Api",
+						"items": [
+							{
+								"name": "base",
+								"title": "BaseApi",
+							},
+							{
+								"name": "search",
+								"title": "SearchApi",
+							},
+						],
 					},
 					{
 						"name": "hooks",
