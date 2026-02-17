@@ -1,34 +1,44 @@
 # Data serialization
 
-Web framework allows you to transfer data from the frontend to the backend.
+The web framework allows you to transfer data from the frontend to the backend and validate it according to defined rules.
 
 
-## Checking strings
+## Checking maps
+
+The MapType is used for validating Map structures. You can define rules for each expected key.
 
 ```
-use Runtime.Serializer;
+use Runtime.Unit.AssertException;
+use Runtime.Serializer.MapType;
 use Runtime.Serializer.StringType;
+use Runtime.Serializer.TypeError;
 
 Map data = {
 	"name": "User",
 };
 
-Serializer serializer = new Serializer();
-serializer.addType(new StringType());
+MapType rules = new MapType{
+	"name": new StringType(),
+};
 
-Map new_data = serializer.filter(data);
-if (not serializer.correct())
+Map new_data = serializer.filter(data, errors);
+if (errors.count() > 0)
 {
-	throw new AssertException(serializer.getErrorMessage());
+	string message = rs::join(", ", TypeError::getMessages(error))
+	throw new AssertException(message);
 }
 ```
 
 
 ## Checking vectors
 
+The VectorType is used for validating Vector structures. You define one rule that applies to all elements within the vector.
+
 ```
-use Runtime.Serializer;
+use Runtime.Unit.AssertException;
+use Runtime.Serializer.MapType;
 use Runtime.Serializer.StringType;
+use Runtime.Serializer.TypeError;
 use Runtime.Serializer.VectorType;
 
 Map data = {
@@ -36,24 +46,30 @@ Map data = {
 	"fruits": ["apple", "banana", "cherry", "grape", "orange", "watermelon"],
 };
 
-Serializer serializer = new Serializer();
-serializer.addType("name", new StringType());
-serializer.addType("fruits", new VectorType(new StringType()));
+MapType rules = new MapType{
+	"name": new StringType(),
+	"fruits": new VectorType(new StringType()),
+};
 
-Map new_data = serializer.filter(data);
-if (not serializer.correct())
+Vector errors = [];
+Map new_data = rules.filter(data, errors);
+if (errors.count() > 0)
 {
-	throw new AssertException(serializer.getErrorMessage());
+	string message = rs::join(", ", TypeError::getMessages(errors));
+	throw new AssertException(message);
 }
 ```
 
 
 ## Checking complex data
 
+For more complex data structures, especially when dealing with nested objects or specific rules for different parts of your data, you can use nested rules.
+
 ```
-use Runtime.Serializer;
+use Runtime.Unit.AssertException;
 use Runtime.Serializer.MapType;
 use Runtime.Serializer.StringType;
+use Runtime.Serializer.TypeError;
 use Runtime.Serializer.VectorType;
 
 Map data = {
@@ -67,30 +83,40 @@ Map data = {
 	},
 };
 
-Serializer serializer = new Serializer();
-serializer.addType("profile", new MapType{
-	"name": new StringType(),
-	"fruits": new VectorType(new StringType()),
-});
-serializer.addType("settings", new MapType{
-	"theme": new StringType(),
-	"lang": new StringType(),
-});
+MapType rules = new MapType{
+	"profile": new MapType{
+		"name": new StringType(),
+		"fruits": new VectorType(new StringType()),
+	},
+	"settings": new MapType{
+		"theme": new StringType(),
+		"lang": new StringType(),
+	}
+};
 
-Map new_data = serializer.filter(data);
-if (not serializer.correct())
+Vector errors = [];
+Map new_data = serializer.filter(data, errors);
+if (errors.count() > 0)
 {
-	throw new AssertException(serializer.getErrorMessage());
+	string message = rs::join(", ", TypeError::getMessages(errors));
+	throw new AssertException(message);
 }
 ```
 
 ## Checking objects
 
+BayLang objects can implement SerializeInterface to define their own serialization rules.
+
 ```
 namespace App.Models;
 
+use Runtime.Unit.AssertException;
+use Runtime.Serializer.MapType;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+use Runtime.Serializer.TypeError;
+use Runtime.Serializer.VectorType;
 use Runtime.SerializeInterface;
-use Runtime.Serializer;
 
 class User extends BaseObject implements SerializeInterface
 {
@@ -101,11 +127,11 @@ class User extends BaseObject implements SerializeInterface
 	/**
 	 * Serialize object
 	 */
-	void serialize(Serializer serializer)
+	static void serialize(ObjectType rules)
 	{
-		parent(serialize);
-		serializer.addType("name", new StringType());
-		serializer.addType("fruits", new VectorType(new StringType()));
+		parent(rules);
+		rules.addType("name", new StringType());
+		rules.addType("fruits", new VectorType(new StringType()));
 	}
 }
 
@@ -115,16 +141,20 @@ Map data = {
 };
 
 User user = new User();
-Serializer serializer = rtl::apply(user, data);
+Vector errors = [];
+Serializer serializer = rtl::assign(user, data, errors);
 
-if (not serializer.correct())
+if (errors.count() > 0)
 {
-	throw new AssertException(serializer.getErrorMessage());
+	string message = TypeError::getMessages(errors);
+	throw new AssertException(message);
 }
 ```
 
 
 ## Serialization
+
+To serialize object use rtl::serialize.
 
 ```
 User user = new User();
@@ -136,17 +166,19 @@ Map data = rtl::serialize(user);
 
 ## Creating own data type
 
+You can implements Runtime.Serializer.BaseType to create custom validation or transformation logic.
+
 ```
 namespace App.Serializer;
 
 use Runtime.Serializer.BaseType;
 
-class CustomType extends BaseType
+class CustomType implements BaseType
 {
 	/**
 	 * Filter value
 	 */
-	var filter(var value, Vector errors, var old_value)
+	var filter(var value, Vector errors)
 	{
 		return value;
 	}

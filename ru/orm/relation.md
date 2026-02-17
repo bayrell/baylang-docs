@@ -1,26 +1,30 @@
 # Relation
 
 
-## Пример Relation
+## Пример Record
 
 ```
 namespace App;
 
-use Runtime.ORM.Relation;
+use Runtime.BaseObject;
 use Runtime.ORM.Record;
+use Runtime.ORM.Annotations.AutoIncrement;
+use Runtime.ORM.Annotations.BigIntType;
+use Runtime.ORM.Annotations.Primary;
+use Runtime.ORM.Annotations.StringType;
 
-class Item extends Relation
+class Item extends Record
 {
 	/**
-     * Returns table name
-     */
-    pure string getTableName() => "items";
+	 * Returns table name
+	 */
+	pure string getTableName() => "items";
 	
 	
 	/**
-     * Returns table schema
-     */
-    pure memorize Collection<BaseObject> schema() =>
+	 * Returns table schema
+	 */
+	pure memorize Collection<BaseObject> schema() =>
 	[
 		/* Fields */
 		new BigIntType{"name": "id"},
@@ -35,20 +39,30 @@ class Item extends Relation
 }
 ```
 
+## Создание Relation
+
+```
+use Runtime.ORM.Relation;
+
+Relation<Item> relation = new Relation(classof Item);
+```
+
 
 ## Создание Record
 
 ```
-Record<Relation> createRecord(Map data = null);
+Record createRecord(Map data = null);
 ```
 
 Пример:
 ```
 /* Create item */
-Item relation_item = new Item();
-Record<Item> item = relation_item.createRecord({
+Item item = relation.createRecord({
 	"name": "Item",
 });
+
+/* Or */
+Item item = new Item();
 await item.save();
 
 /* Refresh item */
@@ -86,14 +100,14 @@ Vector<QueryFilter> getPrimaryFilter(Map data, bool use_full_key = true);
 
 Пример:
 ```
-Relation item = new Item();
+Relation relation = new Relation(classof Item);
 Map post_data = this.filter(this.request.data, new MapData{
-	"pk": item.getPrimaryRules(),
-	"item": item.getItemRules(),
+	"pk": relation.getPrimaryRules(),
+	"item": relation.getItemRules(),
 });
 
 /* Get primary key */
-Map pk = relation_item.getPrimaryFilter(post_data.get("item"));
+Map pk = relation.getPrimaryFilter(post_data.get("item"));
 ```
 
 
@@ -115,12 +129,12 @@ async Map fromDatabase(Map data);
 
 Сохранить или создать объект в базе данных
 ```
-async void save(Record<Relation> item);
+async void save(Record item);
 ```
 
 Удалить объект из базы данных
 ```
-async void delete(Record<Relation> item);
+async void delete(Record item);
 ```
 
 
@@ -128,7 +142,7 @@ async void delete(Record<Relation> item);
 
 Обновить данные объекта из базы данных. Полезно, когда объект был сохранен в базу данных и нужно получить его новую версию.
 ```
-async void refresh(Record<Relation> item);
+async void refresh(Record item);
 ```
 
 
@@ -148,7 +162,7 @@ async QueryResult<Map> fetchAll(Query q)
 
 Получить результат запроса в виде Record
 ```
-async QueryResult<Record<Relation>> fetchAllRecords(Query q)
+async QueryResult<Record> fetchAllRecords(Query q)
 ```
 
 Получить только одну строчку
@@ -158,7 +172,7 @@ async Map fetchOne(Query q)
 
 Получить только один Record
 ```
-async Record<Relation> fetchRecord(Query q)
+async Record fetchRecord(Query q)
 ```
 
 Найти строчки по фильтру
@@ -168,18 +182,18 @@ async QueryResult find(Vector<QueryFilter> filter)
 
 Найти Record по фильтру
 ```
-async Record<Relation> findRecord(Vector<QueryFilter> filter)
+async Record findRecord(Vector<QueryFilter> filter)
 ```
 
 Найти Record по primary key
 ```
-async Record<Relation> findByPk(Map pk)
-async Record<Relation> findById(var id)
+async Record findByPk(Map pk)
+async Record findById(var id)
 ```
 
 Найти или создать объект по фильтру.
 ```
-async Record<Relation> findOrCreate(Map filter)
+async Record findOrCreate(Map filter)
 ```
 
 Если объекта в базе нет, то будет создан экземпляр Record. Но в базе он появится, только после save()

@@ -1,9 +1,52 @@
 # Record
 
+Пример Record:
+```
+namespace App.Database;
+
+use Runtime.BaseObject;
+use Runtime.ORM.Record;
+use Runtime.ORM.Annotations.AutoIncrement;
+use Runtime.ORM.Annotations.BigIntType;
+use Runtime.ORM.Annotations.Primary;
+use Runtime.ORM.Annotations.StringType;
+
+
+class Item extends Record
+{
+	/**
+     * Returns table name
+     */
+    pure string getTableName() => "forms";
+	
+	
+	/**
+	 * Returns table schema
+	 */
+	pure memorize Collection<BaseObject> schema() =>
+	[
+		/* Fields */
+		new BigIntType{"name": "id"},
+		new StringType{"name": "name"},
+		new StringType{"name": "description"},
+		new BigIntType{"name": "category_id"},
+		new DateTimeType{"name": "gmtime_add", "autocreate": true},
+		new DateTimeType{"name": "gmtime_edit", "autoupdate": true},
+		
+		/* Index */
+		new AutoIncrement{"name": "id"},
+		new Primary{"keys": ["id"]},
+	];
+}
+```
+
 Получить объект из базы
 ```
-Record<Item> item = await this.relation_item.fetchRecord(
-    this.relation_item.select().where("id", "=", "1")
+use Runtime.ORM.Relation;
+
+Relation<Item> relation = new Relation(classof Item);
+Item item = await relation.fetchRecord(
+    relation.select().where("id", "=", "1")
 );
 ```
 
