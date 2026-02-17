@@ -41,11 +41,12 @@ class Description
 					},
 					{
 						"name": "about",
-						"title": "BayLang Programming Language",
+						"title": "BayLang FullStack Programming Language",
+						"menu_title": "BayLang Programming Language",
 					},
 					{
-						"name": "install",
-						"title": "Installing BayLang",
+						"name": "install_nodejs",
+						"title": "Installing BayLang on NodeJS",
 					},
 					{
 						"name": "project_php",
@@ -149,6 +150,20 @@ class Description
 					{
 						"name": "serialize",
 						"title": "Data serialization",
+					},
+					{
+						"name": "api",
+						"title": "Api",
+						"items": [
+							{
+								"name": "base",
+								"title": "BaseApi"
+							},
+							{
+								"name": "search",
+								"title": "SearchApi",
+							}
+						],
 					},
 					{
 						"name": "hooks",

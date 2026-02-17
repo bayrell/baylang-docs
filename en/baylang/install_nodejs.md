@@ -1,4 +1,4 @@
-# BayLang install
+# Install BayLang on NodeJS
 
 Install
 ```
@@ -8,7 +8,7 @@ npm install --save bay-lang@latest
 
 Check verson:
 ```
-bay-lang-nodejs version
+baylang-nodejs version
 ```
 
 ## Project settings
@@ -27,14 +27,14 @@ Create file project.json in the root of the project
 }
 ```
 
-## Компиляция проекта
+## Compile project
 
 Build all project:
 ```bash
-bay-lang-nodejs make_all
+baylang-nodejs make_all
 ```
 
 Run command to watch changes and automatic build project:
 ```bash
-bay-lang-nodejs watch
+baylang-nodejs watch
 ```

@@ -81,7 +81,7 @@ class IndexPageModel extends BaseModel
 
 ## History of Creation
 
-[25 Nov 2025] Release 1.0 version
+[27 Dec 2025] Release 1.0 version. Language and framework
 
 [15 May 2025] Start 1.0 version
 

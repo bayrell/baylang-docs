@@ -1,16 +1,90 @@
 # Setup PHP project
 
-Project structure:
+BayLang Technology allows you to create FullStack projects and compile frontend components using native PHP.
+
+Github: [https://github.com/bayrell/project_php](https://github.com/bayrell/project_php)
+
+Create a project using composer
+```
+wget https://github.com/bayrell/project_php/archive/refs/heads/main.zip -O "project.zip"
+unzip project.zip
+```
+
+Change folder:
+```
+mv project_php-main project
+cd project
+```
+
+
+## Docker container for developer
+
+Build test docker container:
+```
+./build.sh test
+```
+
+Run docker container:
+```
+docker run -d -p 8000:80 -v ./src:/var/www/html --name app_project app/project:1.0
+```
+
+
+## Compile project
+
+Enter to docker container:
+```
+docker exec -it app_project bash
+```
+
+Run commands:
+```
+cd /var/www/html
+composer install
+baylang-php make_all
+./console.php core:install
+```
+
+Watch project changes:
+```
+baylang-php watch
+```
+
+## Stop container
+
+Run command
+```
+docker stop app_project
+docker rm app_project
+```
+
+
+## Build prod docker container
+
+Run command:
+```
+./build.sh docker
+```
+
+
+## Project structure
+
 ```
 files
 src
   app
     Components
-    Pages
-      IndexPage
-        IndexPage.bay
-        IndexPageModel.bay
-    Routes.bay
+      Blocks
+        CSS.bay
+        Scripts.bay
+      Layout
+        DefaultLayout.bay
+        DefaultLayoutModel.bay
+      Pages
+        IndexPage
+          IndexPage.bay
+          IndexPageModel.bay
+      Routes.bay
     ModuleDescription.bay
   public
     dist
@@ -60,64 +134,4 @@ project.json
         "src/vendor"
     ]
 }
-```
-
-File index.php
-```php
-<?php
-
-use Runtime\rs;
-use Runtime\rtl;
-use Runtime\BaseLayout;
-use Runtime\Loader;
-use Runtime\RenderContainer;
-use Runtime\Vector;
-use Runtime\Map;
-
-define('BASE_PATH', dirname(__DIR__));
-ini_set('display_errors', 'on');
-ini_set('html_errors', 'on');
-set_time_limit(30);
-
-/* Create loader */
-require_once BASE_PATH . "/lib/Runtime/bay/Loader.php";
-Loader::add("App", BASE_PATH . "/lib/App/php");
-Loader::add("Runtime", BASE_PATH . "/lib/Runtime/php");
-Loader::add("Runtime.Widget", BASE_PATH . "/lib/Runtime.Widget/php");
-Loader::init();
-
-/* Create context */
-rtl::createContext(new Map(["modules"=>new Vector("App")]));
-
-/* Create container and layout */
-$container = new RenderContainer();
-$layout = $container->createLayout("default");
-
-/* Setup page model */
-$layout->setPageModel("App.Components.IndexPage.IndexPageModel");
-
-/* Load data */
-$layout->loadData($container);
-
-/* HTML */
-?><html lang='<?= rs::escapeHtml($layout->lang) ?>'>
-<head>
-<title><?= rs::escapeHtml($layout->title) ?></title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style><?= $layout->getStyle() ?></style>
-</head>
-<body>
-<div class="root_container"><?= $container->render() ?></div>
-<script src="/assets/vue.runtime.global.js"></script>
-<script src="/assets/runtime.js"></script>
-<script src="/assets/app.js"></script>
-<script>
-var app_data = <?= json_encode($container->getData()); ?>;
-Runtime.rtl.mount(app_data, document.querySelector(".root_container"), function (result){
-    window["app"] = result.get("app");
-	window["app_layout"] = result.get("layout");
-});
-</script>
-</body>
-</html>
 ```
