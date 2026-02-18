@@ -1,4 +1,4 @@
-# Веб фрэймворк BayLang Technology
+# Framework BayLang Technology
 
 The **BayLang Web Framework** enables cross-platform development, allowing code to run on:
 - Backend (WordPress, Laravel, PHP, Node.js, Python)

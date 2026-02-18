@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 
 def list_files_recursively(directory):
@@ -21,4 +22,4 @@ def create_document(folder="en"):
                     outfile.write("\n\n")
 
 create_document("en")
-#create_document("ru")
+create_document("ru")

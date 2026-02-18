@@ -21,6 +21,12 @@ namespace Runtime.Documentation;
 class Description
 {
 	/**
+	 * Returns modify date
+	 */
+	static string date() => "2025-12-26"
+	
+	
+	/**
 	 * Returns english content
 	 */
 	static Map contentEn() =>
@@ -33,48 +39,57 @@ class Description
 				"title": "BayLang Programming Language",
 				"description": "Detailed guide on using BayLang for developing modern web applications",
 				"menu_title": "BayLang",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "index",
 						"title": "BayLang Technology Platform",
+						"description": "Discover the BayLang Technology Platform for ultra-fast development of web and backend applications.",
 						"file_name": "index.md",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "about",
 						"title": "BayLang FullStack Programming Language",
+						"description": "Learn about BayLang, a full-stack programming language for efficient multi-platform development.",
 						"menu_title": "BayLang Programming Language",
-					},
-					{
-						"name": "install_nodejs",
-						"title": "Installing BayLang on NodeJS",
-					},
-					{
-						"name": "project_php",
-						"title": "Setting up a PHP Project",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "syntax",
 						"title": "Syntax",
+						"description": "Explore the fundamental syntax of BayLang programming language, from basic structures to advanced features.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "string",
 						"title": "Strings",
+						"description": "String manipulation in BayLang with detailed examples and best practices.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "vector",
 						"title": "Vectors",
+						"description": "Understand how to work with dynamic arrays and lists using Vectors in BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "map",
 						"title": "Map",
+						"description": "Learn to use associative arrays and key-value pairs with Map in BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "template",
 						"title": "Templates and Components",
+						"description": "Build interactive user interfaces with BayLang Templates and reusable Components.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "model",
 						"title": "Models",
+						"description": "Discover how to implement business logic and data structures using Models in BayLang.",
+						"date": "2025-12-26",
 					},
 				],
 			},
@@ -82,19 +97,26 @@ class Description
 				"name": "cloud-os",
 				"title": "BAYRELL Cloud OS",
 				"description": "Detailed guide on using Cloud OS",
+				"date": "2025-12-26",
 				"menu_title": "Cloud OS",
 				"items": [
 					{
 						"name": "about",
 						"title": "Cloud OS",
+						"description": "An introduction to BAYRELL Cloud OS, its architecture, and key features for cloud deployments.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "install-desktop",
 						"title": "Installing Thin Client on Desktop",
+						"description": "Step-by-step guide on how to install the BAYRELL Cloud OS thin client on your desktop.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "install-server",
 						"title": "Server Installation",
+						"description": "Instructions for setting up and installing BAYRELL Cloud OS on a server environment.",
+						"date": "2025-12-26",
 					},
 				],
 			},
@@ -102,10 +124,13 @@ class Description
 				"name": "constructor",
 				"title": "BayLang Constructor",
 				"description": "Detailed guide on using BayLang constructor for developing modern web applications",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "Constructor",
+						"description": "Learn about the visual constructor in BayLang for rapid application development and UI design.",
+						"date": "2025-12-26",
 					},
 				],
 			},
@@ -113,81 +138,157 @@ class Description
 				"name": "orm",
 				"title": "Object-Relational Mapping",
 				"description": "ORM guide",
+				"date": "2025-12-26",
 				"items":
 				[
 					{
 						"name": "about",
 						"title": "About ORM",
+						"description": "An overview of the Object-Relational Mapping (ORM) system in BayLang and its benefits.",
 						"menu_title": "About",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "connection",
 						"title": "Connection",
+						"description": "How to establish and manage database connections using BayLang ORM.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "query",
 						"title": "Query",
+						"description": "Perform database queries efficiently with the BayLang ORM query builder.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "record",
 						"title": "Record",
+						"description": "Work with database records as objects using the ORM Record class in BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "relation",
 						"title": "Relation",
+						"description": "Define and manage relationships between your database tables with BayLang ORM.",
+						"date": "2025-12-26",
 					},
 				]
 			},
 			{
 				"name": "framework",
-				"title": "BayLang Web Framework",
+				"title": "BayLang Framework",
 				"description": "Detailed guide on using BayLang for developing modern web applications",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
-						"title": "Web Framework",
+						"title": "BayLang Web Framework",
+						"description": "An introduction to the BayLang web framework and its powerful features for modern development.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "install_nodejs",
+						"title": "Installing BayLang on NodeJS",
+						"description": "Guide to installing and setting up BayLang with NodeJS for fullstack development.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "project_php",
+						"title": "Setting up a PHP Project",
+						"description": "Learn how to configure and initialize a BayLang project for PHP environments.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "project",
+						"title": "Setup project",
+						"description": "Detailed guide for setting up and structuring your first BayLang project.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "init_php",
+						"title": "Init PHP project",
+						"description": "Initialize your PHP project with BayLang, covering essential configurations and setup.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "routes",
+						"title": "Routes",
+						"description": "Understand how to define and manage routing in your BayLang web application.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "page",
+						"title": "Page example",
+						"description": "See a practical example of creating a page in BayLang, including templates and logic.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "seo",
+						"title": "Search engine optimization",
+						"description": "Best practices and features for optimizing your BayLang application for search engines.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "serialize",
 						"title": "Data serialization",
+						"description": "Learn about data serialization techniques in BayLang for efficient data exchange.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "api",
 						"title": "Api",
+						"description": "Documentation for building and interacting with APIs in BayLang.",
+						"date": "2025-12-26",
 						"items": [
 							{
 								"name": "base",
-								"title": "BaseApi"
+								"title": "BaseApi",
+								"description": "Reference for the BaseApi class, providing fundamental API functionalities.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "search",
 								"title": "SearchApi",
+								"description": "How to implement and use the SearchApi for robust search capabilities in BayLang.",
+								"date": "2025-12-26",
 							}
 						],
 					},
 					{
 						"name": "hooks",
 						"title": "Hooks",
+						"description": "Explore the powerful hook system in BayLang for extending application functionality.",
+						"date": "2025-12-26",
 						"items": [
 							{
 								"name": "components",
-								"title": "Components"
+								"title": "Components",
+								"description": "Understand how to extend and manage components using BayLang hooks.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "detect_language",
-								"title": "DetectLanguage"
+								"title": "DetectLanguage",
+								"description": "Implement language detection using BayLang hooks for multi-language support.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "detect_theme",
-								"title": "DetectTheme"
+								"title": "DetectTheme",
+								"description": "Dynamically change themes based on user preferences or system settings with BayLang hooks.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "page_not_found",
-								"title": "PageNotFound"
+								"title": "PageNotFound",
+								"description": "Customize 404 error handling and page not found responses using BayLang hooks.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "setup_layout",
-								"title": "SetupLayout"
+								"title": "SetupLayout",
+								"description": "Manage and setup application layouts programmatically with BayLang hooks.",
+								"date": "2025-12-26",
 							},
 						],
 					},
@@ -197,57 +298,80 @@ class Description
 				"name": "widget",
 				"title": "Widgets",
 				"description": "Ready-made blocks for creating web applications",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "Runtime.Widget",
+						"description": "An overview of the Runtime.Widget library, providing reusable UI components for BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "styles",
 						"title": "Website Styles",
+						"description": "Customizing and managing global website styles within the BayLang widget system.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "theme_dark",
 						"title": "Dark Theme",
+						"description": "How to implement and enable a dark theme for your BayLang applications.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "basic",
 						"title": "Basic Widgets",
+						"description": "Discover a collection of fundamental and commonly used widgets in BayLang.",
+						"date": "2025-12-26",
 						"items": [
 							{
 								"name": "button",
 								"title": "Runtime.Widget.Button",
+								"description": "Documentation for the Button widget: properties, events, and usage.",
 								"menu_title": "Button",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "image",
 								"title": "Runtime.Widget.Image",
+								"description": "How to display and manage images using the Runtime.Widget.Image component.",
 								"menu_title": "Image",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "input",
 								"title": "Runtime.Widget.Input",
+								"description": "Guide to using the Input widget for various form input types in BayLang.",
 								"menu_title": "Input",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "select",
 								"title": "Runtime.Widget.Select",
+								"description": "Implement dropdowns and selection lists with the Runtime.Widget.Select component.",
 								"menu_title": "Select",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "textarea",
 								"title": "Runtime.Widget.TextArea",
+								"description": "Documentation for the TextArea widget for multi-line text input.",
 								"menu_title": "TextArea",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "texteditable",
 								"title": "Runtime.Widget.TextEditable",
+								"description": "Create editable text content areas with the TextEditable widget in BayLang.",
 								"menu_title": "TextEditable",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "upload_file_button",
 								"title": "Runtime.Widget.UploadFileButton",
+								"description": "Enable file uploads with a user-friendly interface using the UploadFileButton widget.",
 								"menu_title": "UploadFileButton",
+								"date": "2025-12-26",
 							},
 						],
 					},
@@ -264,44 +388,56 @@ class Description
 	{
 		"title": "Документация по BayLang",
 		"description": "Полное руководство по технологии BayLang: Язык программирования, Интеллектуальные системы, Визуальный конструктор и многое другое",
+		"date": "2025-12-26",
 		"items": [
 			{
 				"name": "baylang",
 				"title": "Язык программирования BayLang",
 				"description": "Подробное руководство по использованию BayLang для разработки современных веб-приложений",
 				"menu_title": "BayLang",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "Язык программирования BayLang",
-					},
-					{
-						"name": "project_php",
-						"title": "Настройка PHP проекта",
+						"description": "Познакомьтесь с BayLang – полностековым языком программирования для эффективной мультиплатформенной разработки.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "syntax",
 						"title": "Синтаксис",
+						"description": "Изучите базовый синтаксис языка программирования BayLang, от основных конструкций до продвинутых функций.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "string",
 						"title": "Строки",
+						"description": "Освойте работу со строками в BayLang с подробными примерами и рекомендациями.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "vector",
 						"title": "Вектора",
+						"description": "Как работать с динамическими массивами и списками, используя Вектора в BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "map",
 						"title": "Map",
+						"description": "Научитесь использовать ассоциативные массивы и пары ключ-значение с помощью Map в BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "template",
 						"title": "Шаблоны и компоненты",
+						"description": "Создавайте интерактивные пользовательские интерфейсы с помощью шаблонов и повторно используемых компонентов BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "model",
 						"title": "Модели",
+						"description": "Узнайте, как реализовать бизнес-логику и структуры данных, используя Модели в BayLang.",
+						"date": "2025-12-26",
 					},
 				],
 			},
@@ -310,18 +446,25 @@ class Description
 				"title": "Облачная операционная система BAYRELL Cloud OS",
 				"description": "Подробное руководство по использованию Облачной ОС",
 				"menu_title": "Cloud OS",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "Облачная ОС",
+						"description": "Введение в BAYRELL Cloud OS, ее архитектуру и ключевые особенности для облачных развертываний.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "install-desktop",
 						"title": "Установка тонкого клиента на десктоп",
+						"description": "Пошаговое руководство по установке тонкого клиента BAYRELL Cloud OS на ваш рабочий стол.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "install-server",
 						"title": "Установка на сервер",
+						"description": "Подробные инструкции по настройке и установке BAYRELL Cloud OS в серверной среде.",
+						"date": "2025-12-26",
 					},
 				],
 			},
@@ -329,10 +472,13 @@ class Description
 				"name": "constructor",
 				"title": "Конструктор BayLang",
 				"description": "Подробное руководство по использованию конструктора BayLang для разработки современных веб-приложений",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "Конструктор",
+						"description": "Узнайте о визуальном конструкторе в BayLang для быстрой разработки приложений и дизайна пользовательского интерфейса.",
+						"date": "2025-12-26",
 					},
 				],
 			},
@@ -340,80 +486,156 @@ class Description
 				"name": "orm",
 				"title": "Object-Relational Mapping",
 				"description": "Руководство по работе с ORM",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "About ORM",
+						"description": "Обзор системы объектно-реляционного отображения (ORM) в BayLang и ее преимуществ.",
 						"menu_title": "About",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "connection",
 						"title": "Connection",
+						"description": "Как устанавливать и управлять подключениями к базе данных с помощью BayLang ORM.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "query",
 						"title": "Query",
+						"description": "Эффективное выполнение запросов к базе данных с помощью построителя запросов BayLang ORM.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "record",
 						"title": "Record",
+						"description": "Работа с записями базы данных как с объектами, используя класс ORM Record в BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "relation",
 						"title": "Relation",
+						"description": "Определение и управление связями между таблицами вашей базы данных с помощью BayLang ORM.",
+						"date": "2025-12-26",
 					},
 				],
 			},
 			{
 				"name": "framework",
-				"title": "Веб фреймворк BayLang",
+				"title": "BayLang фреймворк",
 				"description": "Подробное руководство по использованию BayLang для разработки современных веб-приложений",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
-						"title": "Веб фреймворк",
+						"title": "Веб фреймворк BayLang",
+						"description": "Введение в веб-фреймворк BayLang и его мощные возможности для современной разработки.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "install_nodejs",
+						"title": "Установка NodeJS",
+						"description": "Руководство по установке и настройке BayLang с NodeJS для разработки фуллстэк приложений.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "project_php",
+						"title": "Настройка PHP проекта",
+						"description": "Узнайте, как настроить и инициализировать проект BayLang для среды PHP.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "project",
+						"title": "Структура проекта",
+						"description": "Подробное руководство по настройке и структурированию вашего первого проекта BayLang.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "init_php",
+						"title": "Инициализация PHP проекта",
+						"description": "Инициализируйте ваш PHP проект с BayLang, охватывая основные конфигурации и настройки.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "routes",
+						"title": "Маршрутизация",
+						"description": "Поймите, как определять и управлять маршрутизацией в вашем веб-приложении BayLang.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "page",
+						"title": "Пример страницы",
+						"description": "Посмотрите практический пример создания страницы в BayLang, включая шаблоны и логику.",
+						"date": "2025-12-26",
+					},
+					{
+						"name": "seo",
+						"title": "Поисковая оптимизация",
+						"description": "Лучшие практики и функции для оптимизации вашего приложения BayLang для поисковых систем.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "serialize",
 						"title": "Сериализация данных",
+						"description": "Узнайте о методах сериализации данных в BayLang для эффективного обмена данными.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "api",
 						"title": "Api",
+						"description": "Документация по созданию и взаимодействию с API в BayLang.",
+						"date": "2025-12-26",
 						"items": [
 							{
 								"name": "base",
 								"title": "BaseApi",
+								"description": "Справочник по классу BaseApi, предоставляющему основные функции API.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "search",
 								"title": "SearchApi",
+								"description": "Как реализовать и использовать SearchApi для надежных поисковых возможностей в BayLang.",
+								"date": "2025-12-26",
 							},
 						],
 					},
 					{
 						"name": "hooks",
 						"title": "Hooks",
+						"description": "Изучите мощную систему хуков в BayLang для расширения функциональности приложения.",
+						"date": "2025-12-26",
 						"items": [
 							{
 								"name": "components",
-								"title": "Components"
+								"title": "Components",
+								"description": "Поймите, как расширять и управлять компонентами, используя хуки BayLang.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "detect_language",
-								"title": "DetectLanguage"
+								"title": "DetectLanguage",
+								"description": "Реализуйте определение языка с помощью хуков BayLang для поддержки нескольких языков.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "detect_theme",
-								"title": "DetectTheme"
+								"title": "DetectTheme",
+								"description": "Динамически меняйте темы на основе пользовательских предпочтений или системных настроек с помощью хуков BayLang.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "page_not_found",
-								"title": "PageNotFound"
+								"title": "PageNotFound",
+								"description": "Настройте обработку ошибок 404 и ответы на несуществующие страницы с помощью хуков BayLang.",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "setup_layout",
-								"title": "SetupLayout"
+								"title": "SetupLayout",
+								"description": "Программно управляйте и настраивайте макеты приложений с помощью хуков BayLang.",
+								"date": "2025-12-26",
 							},
 						],
 					},
@@ -423,57 +645,80 @@ class Description
 				"name": "widget",
 				"title": "Базовые виджеты",
 				"description": "Готовые блоки для создания веб приложений",
+				"date": "2025-12-26",
 				"items": [
 					{
 						"name": "about",
 						"title": "Runtime.Widget",
+						"description": "Обзор библиотеки Runtime.Widget, предоставляющей многократно используемые компоненты пользовательского интерфейса для BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "styles",
 						"title": "Стили веб сайта",
+						"description": "Настройка и управление глобальными стилями веб-сайта в системе виджетов BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "theme_dark",
 						"title": "Темная тема",
+						"description": "Как реализовать и включить темную тему для ваших приложений BayLang.",
+						"date": "2025-12-26",
 					},
 					{
 						"name": "basic",
 						"title": "Базовые виджеты",
+						"description": "Откройте для себя коллекцию фундаментальных и часто используемых виджетов в BayLang.",
+						"date": "2025-12-26",
 						"items": [
 							{
 								"name": "button",
 								"title": "Runtime.Widget.Button",
+								"description": "Документация по виджету Button: свойства, события и использование.",
 								"menu_title": "Button",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "image",
 								"title": "Runtime.Widget.Image",
+								"description": "Как отображать изображения и управлять ими с помощью компонента Runtime.Widget.Image.",
 								"menu_title": "Image",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "input",
 								"title": "Runtime.Widget.Input",
+								"description": "Руководство по использованию виджета Input для различных типов ввода форм в BayLang.",
 								"menu_title": "Input",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "select",
 								"title": "Runtime.Widget.Select",
+								"description": "Реализуйте выпадающие списки и списки выбора с помощью компонента Runtime.Widget.Select.",
 								"menu_title": "Select",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "textarea",
 								"title": "Runtime.Widget.TextArea",
+								"description": "Документация по виджету TextArea для многострочного текстового ввода.",
 								"menu_title": "TextArea",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "texteditable",
 								"title": "Runtime.Widget.TextEditable",
+								"description": "Создавайте редактируемые текстовые области с помощью виджета TextEditable в BayLang.",
 								"menu_title": "TextEditable",
+								"date": "2025-12-26",
 							},
 							{
 								"name": "upload_file_button",
 								"title": "Runtime.Widget.UploadFileButton",
+								"description": "Включите загрузку файлов с удобным интерфейсом с помощью виджета UploadFileButton.",
 								"menu_title": "UploadFileButton",
+								"date": "2025-12-26",
 							},
 						],
 					},
