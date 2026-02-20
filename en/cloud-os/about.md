@@ -11,7 +11,7 @@
 - Possibility to develop software in browser
 - CI/CD process configuration
 
-[![Обзор BAYRELL Cloud OS](https://img.youtube.com/vi/TlzsL3pxKn4/0.jpg)](https://www.youtube.com/watch?v=TlzsL3pxKn4)
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/TlzsL3pxKn4?si=6eLQz2fnhVNqUEND&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
 
 
 ## Concept of Cloud OS
@@ -42,7 +42,7 @@ The second key idea is the automatic generation of yaml files and **installing p
 
 **Creating a Personal Cloud**
 
-Using the Docker Swarm system, the cloud operating system allows combining servers into a single digital space and installing applications with one click. The list of available applications is available in the Marketplace.
+Using the Docker Swarm system, the cloud operating system allows combining servers into a single digital space and installing applications with one click. The list of available applications is available in the <a href="https://baylang.com/en/marketplace" target="_blank">Marketplace</a>.
 
 **No Vendor Lock**
 
@@ -96,11 +96,13 @@ The cloud OS can be used for personal server management. OS has a web panel thro
 
 ## Work Scheme
 
-[Presentation of Cloud OS](https://docs.google.com/presentation/d/1t_xEG0CTqux2kg058IpCqes_xlibIo81jA_i2w3Zr-o/)
+<a href="https://docs.google.com/presentation/d/1t_xEG0CTqux2kg058IpCqes_xlibIo81jA_i2w3Zr-o/" target="_blank">Presentation of Cloud OS</a>
 
 An integration build is assembled by integrating Cloud Software written by different vendors. An integration build can work as a boxed version or as a service on the Internet. The integration build is segmented for a specific niche or tasks. Cloud Software is maximally adapted to the processes of this niche.
 
 The cloud integrator takes on the functions of the sales department, technical support for users and server maintenance. Vendor companies take on the functions of software development and receive royalty payments for their program code, which is part of the integration build.
+
+<img class="image" src="ru/images/shema-bayrell-cloud-os-korobochnaya-versiya.png" alt="OnPremise BAYRELL Clous OS"></img>
 
 **Benefits for vendors** are that they don’t need to worry about the sales department, technical support and working with customers. They focus purely on development, while earning from royalties and license sales of their software, which is part of integration builds. Vendors can conclude contracts and work with several cloud integrators at once, thereby dramatically increasing the volume of sales of the software they developed. The staff of the vendor company mainly consists of programmers.
 
@@ -110,6 +112,7 @@ It is especially worth noting the fact that assembling an integration build is m
 
 Thus, Cloud OS is an anti-crisis solution in the field of developing large IT systems that deal with digitization and automation of business processes and cross-processes.
 
+<img class="image" src="ru/images/shema-bayrell-cloud-os.png" alt="BAYRELL Cloud OS"></img>
 
 ## Virtual Spaces (Cabinets) System
 

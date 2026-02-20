@@ -11,4 +11,4 @@
 
 Обзор на ютубе:
 
-[![Конструктор сайтов для WordPress](https://img.youtube.com/vi/HZUMhqxvUEg/0.jpg)](https://www.youtube.com/watch?v=HZUMhqxvUEg)
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/HZUMhqxvUEg?si=aOoK1Xic6F9qXJ5G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>

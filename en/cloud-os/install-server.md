@@ -1,6 +1,6 @@
 # Installing BAYRELL Cloud OS on a Server
 
-[![Installing BAYRELL Cloud OS on a Server](https://img.youtube.com/vi/TlzsL3pxKn4/0.jpg)](https://www.youtube.com/watch?v=TlzsL3pxKn4)
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/TlzsL3pxKn4?si=6eLQz2fnhVNqUEND&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
 
 Instructions:
 

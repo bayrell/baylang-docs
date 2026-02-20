@@ -17,7 +17,7 @@ def create_document(folder="en"):
         for filename in files:
             if os.path.exists(filename):
                 with open(filename, "r", encoding="utf-8") as file:
-                    outfile.write(f"# File: {filename}\n\n") 
+                    outfile.write(f"# File: {filename}\n\n")
                     outfile.write(file.read())
                     outfile.write("\n\n")
 

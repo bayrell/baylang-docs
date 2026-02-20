@@ -34,19 +34,21 @@ sudo apt install python3-qtpy
 
 ## Установка на Windows
 
-1) Скачайте Python 3.10 с сайта https://www.python.org/downloads/
+1) Скачайте Python 3.14 с сайта https://www.python.org/downloads/
 
 2) Запустите установщик. Нажмите на кнопку Customize installation
 
-![screenshot_20221016_182140](https://blog.bayrell.org/wp-content/uploads/2022/10/screenshot_20221016_182140.png?_=1665924472000)
+<img src="ru/images/screenshot_20221016_182140.png"></img>
 
-![screenshot_20221016_182205](https://blog.bayrell.org/wp-content/uploads/2022/10/screenshot_20221016_182205.png?_=1665924473000)
+Нажмите Далее
+
+<img src="ru/images/screenshot_20221016_182205.png"></img>
 
 Нажмите на флажок Add environment to PATH.
 
-Установите в папку C:\Python310
+Установите в папку C:\Python3
 
-![screenshot_20221016_182232](https://blog.bayrell.org/wp-content/uploads/2022/10/screenshot_20221016_182232.png?_=1665924472000)
+<img src="ru/images/screenshot_20221016_182232.png"></img>
 
 3) Откройте командную строку от администратора и выполните команду
 

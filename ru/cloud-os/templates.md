@@ -8,7 +8,9 @@
 
 YAML файл генерируется автоматически. При сборке докер контейнера создается xml template с инструкциями как запускать это приложения. Поэтому создавать yaml файл не нужно. Он создается автоматически на основе xml шаблона и тех настройек что указал пользователь.
 
-![Модификаторы и шаблоны](https://blog.bayrell.org/wp-content/uploads/2022/10/konczepcziya-oblachnoj-os-modifikatory-i-shablony.drawio.png?_=1666251653000)
+<center>
+	<img src="ru/images/konczepcziya-oblachnoj-os-modifikatory-i-shablony.drawio.png"></img>
+</center>
 
 
 ## Шаблон приложения

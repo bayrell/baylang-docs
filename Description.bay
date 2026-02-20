@@ -261,6 +261,12 @@ class Description
 						"date": "2025-12-26",
 						"items": [
 							{
+								"name": "custom_hook",
+								"title": "Create custom hook",
+								"description": "How to create custom hook",
+								"date": "2025-12-26",
+							},
+							{
 								"name": "components",
 								"title": "Components",
 								"description": "Understand how to extend and manage components using BayLang hooks.",
@@ -454,6 +460,10 @@ class Description
 						"description": "Введение в BAYRELL Cloud OS, ее архитектуру и ключевые особенности для облачных развертываний.",
 						"date": "2025-12-26",
 					},
+					/*{
+						"name": "example",
+						"title": "Example",
+					},*/
 					{
 						"name": "install-desktop",
 						"title": "Установка тонкого клиента на десктоп",
@@ -465,6 +475,18 @@ class Description
 						"title": "Установка на сервер",
 						"description": "Подробные инструкции по настройке и установке BAYRELL Cloud OS в серверной среде.",
 						"date": "2025-12-26",
+					},
+					{
+						"name": "install-wordpress",
+						"title": "Установка WordPress",
+						"description": "Установка WordPress в Облачную ОС",
+						"date": "2026-02-20",
+					},
+					{
+						"name": "templates",
+						"title": "Шаблоны и модификаторы",
+						"description": "Инструкция как создавать свои собственные шаблоны и модификаторы для Облачной ОС",
+						"date": "2026-02-20",
 					},
 				],
 			},
@@ -607,6 +629,12 @@ class Description
 						"description": "Изучите мощную систему хуков в BayLang для расширения функциональности приложения.",
 						"date": "2025-12-26",
 						"items": [
+							{
+								"name": "custom_hook",
+								"title": "Создание хуков",
+								"description": "Как создать хук",
+								"date": "2025-12-26",
+							},
 							{
 								"name": "components",
 								"title": "Components",
