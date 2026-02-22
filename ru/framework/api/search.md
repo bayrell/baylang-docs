@@ -76,10 +76,13 @@ class Item extends Record
 ```
 namespace App.Api;
 
+use Runtime.Serializer.MapType;
 use Runtime.ORM.Query;
 use Runtime.Web.Annotations.ApiMethod;
 use Runtime.Widget.Api.SearchApi;
+use Runtime.WordPress.Admin.AdminMiddleware;
 use App.Database.Item;
+
 
 class ItemSearchApi extends SearchApi
 {
@@ -98,7 +101,10 @@ class ItemSearchApi extends SearchApi
 	/**
 	 * Returns middleware
 	 */
-	Vector<Middleware> getMiddleware() => [];
+	Vector<Middleware> getMiddleware() =>
+	[
+		new AdminMiddleware(),
+	];
 	
 	
 	/**
@@ -205,6 +211,10 @@ class ItemSearchApi extends SearchApi
 namespace App.Api;
 
 use Runtime.Widget.Api.SaveApi;
+use Runtime.Widget.Api.Rules.UniqueRule;
+use Runtime.WordPress.Admin.AdminMiddleware;
+use App.Database.Item;
+
 
 class ItemSaveApi extends SaveApi
 {
@@ -223,13 +233,19 @@ class ItemSaveApi extends SaveApi
 	/**
 	 * Returns middleware
 	 */
-	Vector<Middleware> getMiddleware() => [];
+	Vector<Middleware> getMiddleware() =>
+	[
+		new AdminMiddleware(),
+	];
 	
 	
 	/**
 	 * Returns save rules
 	 */
-	Vector<BaseRule> rules() => [];
+	Vector<BaseRule> rules() =>
+	[
+		new UniqueRule{"field_name": "name"},
+	];
 	
 	
 	/**
@@ -258,7 +274,7 @@ class ItemSaveApi extends SaveApi
 	 */
 	Vector<string> getItemFields() =>
 	[
-		"id"
+		"id",
 		"name",
 		"description",
 		"category_id",
@@ -287,24 +303,6 @@ class ItemSaveApi extends SaveApi
 	async void onSaveBefore()
 	{
 		await parent();
-		
-		/* Check unique */
-		Query q = this.relation.select()
-			.where("name", "=", this.item.get("name"));
-		if (this.item.isExists())
-		{
-			q.where("id", "!=", this.item.get("id"));
-		}
-		
-		Record existing_item = await this.relation.fetchRecord(q);
-		if (existing_item)
-		{
-			throw new ApiError(new FieldException({
-				"error": {
-					"name": "Имя уже используется."
-				}
-			}));
-		}
 	}
 	
 	
@@ -327,7 +325,9 @@ class ItemSaveApi extends SaveApi
 		/* Запрет удаления, если есть связанные заказы */
 		if (this.item.get("has_orders"))
 		{
-			throw new ApiError(new RuntimeException("Невозможно удалить запись, так как существуют связанные заказы."));
+			throw new ApiError(new RuntimeException(
+				"Невозможно удалить запись, так как существуют связанные заказы."
+			));
 		}
 	}
 	

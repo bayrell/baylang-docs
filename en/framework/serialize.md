@@ -142,7 +142,7 @@ Map data = {
 
 User user = new User();
 Vector errors = [];
-Serializer serializer = rtl::assign(user, data, errors);
+rtl::assign(user, data, errors);
 
 if (errors.count() > 0)
 {

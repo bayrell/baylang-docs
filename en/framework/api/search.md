@@ -73,19 +73,22 @@ The `SearchApi` module provides basic functionality for creating API endpoints d
 ## SearchApi Example
 
 ```
-namespace App.Api;
+namespace App.Admin.Api;
 
+use Runtime.Serializer.MapType;
 use Runtime.ORM.Query;
 use Runtime.Web.Annotations.ApiMethod;
 use Runtime.Widget.Api.SearchApi;
+use Runtime.WordPress.Admin.AdminMiddleware;
 use App.Database.Item;
+
 
 class ItemSearchApi extends SearchApi
 {
 	/**
 	 * Returns api name
 	 */
-	pure string getApiName() => "app.item";
+	pure string getApiName() => "admin.item";
 	
 	
 	/**
@@ -97,7 +100,10 @@ class ItemSearchApi extends SearchApi
 	/**
 	 * Returns middleware
 	 */
-	Vector<Middleware> getMiddleware() => [];
+	Vector<Middleware> getMiddleware() =>
+	[
+		new AdminMiddleware(),
+	];
 	
 	
 	/**
@@ -189,6 +195,10 @@ Continuing the example with the `Item` entity, to create an API for saving and d
 namespace App.Api;
 
 use Runtime.Widget.Api.SaveApi;
+use Runtime.Widget.Api.Rules.UniqueRules;
+use Runtime.WordPress.Admin.AdminMiddleware;
+use App.Database.Item;
+
 
 class ItemSaveApi extends SaveApi
 {
@@ -207,13 +217,19 @@ class ItemSaveApi extends SaveApi
 	/**
 	 * Returns middleware
 	 */
-	Vector<Middleware> getMiddleware() => [];
+	Vector<Middleware> getMiddleware() =>
+	[
+		new AdminMiddleware(),
+	];
 	
 	
 	/**
 	 * Returns save rules
 	 */
-	Vector<BaseRule> rules() => [];
+	Vector<BaseRule> rules() =>
+	[
+		new UniqueRules{"field_name": "name"},
+	];
 	
 	
 	/**
@@ -242,7 +258,7 @@ class ItemSaveApi extends SaveApi
 	 */
 	Vector<string> getItemFields() =>
 	[
-		"id"
+		"id",
 		"name",
 		"description",
 		"category_id",
@@ -271,24 +287,6 @@ class ItemSaveApi extends SaveApi
 	async void onSaveBefore()
 	{
 		await parent();
-		
-		/* Check unique */
-		Query q = this.relation.select()
-			.where("name", "=", this.item.get("name"));
-		if (this.item.isExists())
-		{
-			q.where("id", "!=", this.item.get("id"));
-		}
-		
-		Record existing_item = await this.relation.fetchRecord(q);
-		if (existing_item)
-		{
-			throw new ApiError(new FieldException({
-				"error": {
-					"name": "Name is already in use."
-				}
-			}));
-		}
 	}
 	
 	
@@ -308,10 +306,12 @@ class ItemSaveApi extends SaveApi
 	{
 		await parent();
 		
-		/* Запрет удаления, если есть связанные заказы */
+		/* Check if has orders */
 		if (this.item.get("has_orders"))
 		{
-			throw new ApiError(new RuntimeException("Cannot delete record because there are related orders.));
+			throw new ApiError(new RuntimeException(
+				"Cannot delete record because there are related orders."
+			));
 		}
 	}
 	
