@@ -1,0 +1,42 @@
+# BayLang Documentation Index (English)
+# ================================
+
+## ⚠️ MAIN RULE
+**ALWAYS READ THE BAYLANG DOCUMENTATION INDEX BEFORE STARTING WORK!**
+- Start with this file (`baylang.rule`) — it contains links to all documentation sections.
+- In case of any questions or problems, look for the answer in the documentation first.
+- The documentation is the primary and only source of truth for BayLang.
+
+
+## 1. BayLang Web Framework
+- en/framework/about.md — Framework overview: cross-platform (WordPress, Laravel, PHP, Node.js, Python, Vue.js), MVC, REST API, ready-to-use components.
+- en/framework/api.md — API interaction: sendApi method, BusInterface, Data Bus pattern, microservice communication.
+- en/framework/init_php.md — PHP project initialization: init.php (context setup, modules, providers), index.php (entry point), console.php (CLI entry point).
+- en/framework/install_nodejs.md — Node.js installation: npm install bay-lang, project.json configuration, make_all/watch commands.
+- en/framework/page.md — Page creation: model + component example, route registration, RouteModel with uri/name/model.
+- en/framework/project.md — Project setup: directory structure, ModuleDescription (dependencies, entities, hooks), project.json (compilation config), module.json (bundle config).
+- en/framework/project_php.md — PHP project setup: composer, Docker container, baylang-php compilation, build.sh, project.json for PHP.
+- en/framework/routes.md — Routing: RouteModel, RouteAction, RoutePage, URL parameters, RouteInfo, BaseRoute, getLayoutName, getRoutes.
+- en/framework/seo.md — SEO: buildTitle for title/description, Seo hook, SeoModel (favicon, canonical_url, article_published_time, robots, tags, OpenGraph).
+- en/framework/serialize.md — Data serialization: MapType, VectorType, ObjectType, filter/validate, AssertException, SerializeInterface, custom BaseType, rtl::serialize.
+
+
+## 2. Object-Relational Mapping (ORM)
+- en/orm/about.md — ORM overview: Connection, Query, Record, Relation architecture.
+- en/orm/connection.md — Database connection: ConnectionFactory, ConnectionMySQL, env variables, DatabaseConnection registration in ModuleDescription.
+- en/orm/query.md — Query builder: select/insert/update/delete, where, orderBy, limit/offset/page, join (inner/left), pagination, filter, raw queries, fetchAll/fetchOne.
+- en/orm/record.md — Record class: table schema, annotations (AutoIncrement, BigIntType, Primary, StringType, DateTimeType), save/delete/refresh, getPrimaryKey, isNew/isUpdate/isChanged, assign/intersect.
+- en/orm/relation.md — Relation class: create/fetch records, find/findByPk/findOrCreate, annotations, getAnotations/getAutoIncrement/getPrimaryKeys, toDatabase/fromDatabase conversion, QueryFilter.
+
+
+## 3. Widget Library (Runtime.Widget)
+- en/widget/about.md — Widget library overview: basic UI components for rapid web development.
+- en/widget/basic/button.md — Button component: usage, CSS classes (primary, secondary, outline, danger, success, info, warning, small, large, stretch).
+- en/widget/basic/image.md — Image component: src binding, component override, RenderProvider replacement.
+- en/widget/basic/input.md — Input component: name, value, valueChange event.
+- en/widget/basic/select.md — Select component: options list, valueChange event.
+- en/widget/basic/textarea.md — TextArea component: multiline text input, valueChange event.
+- en/widget/basic/texteditable.md — TextEditable component: rich text editing, valueChange event.
+- en/widget/basic/upload_file_button.md — UploadFileButton component: file upload, file event.
+- en/widget/styles.md — CSS variables: dimensions, spacing, color palette (primary/secondary/success/danger/info/warning/text), shadows, border-radius, responsive widths.
+- en/widget/theme_dark.md — Dark theme: theme_dark class, layout.theme binding, CSS transitions, toggleTheme, ThemeDetect hook, cookie persistence.

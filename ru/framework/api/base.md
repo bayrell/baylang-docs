@@ -13,13 +13,21 @@ class ExampleApi extends BaseApi
 	pure string getApiName() => "app.example";
 	
 	
+	/**
+	 * Returns data rules
+	 */
+	void getDataRules(MapType rules)
+	{
+		rules.addType("name", new StringType());
+	}
+	
+	
 	@ApiMethod{ "name": "index" }
 	async void actionIndex()
 	{
-		this.data = this.filter(this.request.data, new MapType{
-			"name": new StringType(),
-		});
+		this.filterData();
 		
+		string name = this.data.get()
 		this.success({
 			"data": {
 				"name": name,

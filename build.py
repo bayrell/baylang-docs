@@ -8,18 +8,18 @@ def list_files_recursively(directory):
             result.append(os.path.join(root, file))
     return result
 
-def create_document(folder="en"):
-    files = list_files_recursively(folder)
+def create_document(folder, file_name):
     
-    output_file = "baylang_" + folder + ".md"
+    output_file = file_name + ".rule"
     print(output_file)
+    
     with open(output_file, "w", encoding="utf-8") as outfile:
-        for filename in files:
-            if os.path.exists(filename):
-                with open(filename, "r", encoding="utf-8") as file:
-                    outfile.write(f"# File: {filename}\n\n")
-                    outfile.write(file.read())
-                    outfile.write("\n\n")
+        for item in folder:
+            files = list_files_recursively(item)
+            for name in files:
+                if os.path.exists(name):
+                    with open(name, "r", encoding="utf-8") as file:
+                        outfile.write(file.read())
+                        outfile.write("\n\n")
 
-create_document("en")
-create_document("ru")
+create_document(["en/baylang"], "baylang_syntax")
