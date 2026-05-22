@@ -164,7 +164,8 @@ The constructor allows:
 - Working with code and using visual tools simultaneously
 
 Video about the constructor’s operation
-[![WebSite builder for WordPress](https://img.youtube.com/vi/HZUMhqxvUEg/0.jpg)](https://www.youtube.com/watch?v=HZUMhqxvUEg)
+
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/HZUMhqxvUEg?si=wMHiBbgXX2C0XGpj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Features:
 - Mouse-based program code development

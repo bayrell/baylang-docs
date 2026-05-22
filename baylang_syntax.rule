@@ -224,29 +224,63 @@ Vector arr = items.transition(
 
 # Components
 
-A component has three parts: **style**, **template**, and **script**.
+> **⚠️ Important:** Every component MUST be wrapped in a `<class>` tag. This is the root element — without it the component will not compile.
+
+**Required structure:**
 
 ```
 <class name="App.Components.IndexPage.IndexPage">
 
 <style>
-.index_page {
-    padding: 5px;
-}
+    /* CSS styles here */
 </style>
 
 <template>
-    <div class="index_page">
-        {{ this.message }}
-    </div>
+    <!-- HTML template here -->
 </template>
 
 <script>
-string message = "Hello world!";
+    /* BayLang logic here */
 </script>
 
 </class>
 ```
+
+> **⚠️ Common mistake:** Do not forget to open `<class>` at the top and close `</class>` at the bottom. All other blocks (`<style>`, `<template>`, `<script>`) must be inside `<class>`.
+
+## Connecting Modules with `<use>`
+
+To use external modules or other components, place `<use>` tags **before** the `<script>` block (but still inside `<class>`):
+
+```
+<class name="App.Components.IndexPage.IndexPage">
+
+<use name="Runtime.Widget.Button" component="true" />
+
+<style>
+    .index_page {
+        padding: 5px;
+    }
+</style>
+
+<template>
+    <div class="index_page">
+        <Button>Click</Button>
+    </div>
+</template>
+
+<script>
+    string message = "Hello world!";
+</script>
+
+</class>
+```
+
+**Order inside `<class>`:**
+1. `<use>` — module/component imports (before `<script>`)
+2. `<style>` — CSS styles
+3. `<template>` — HTML markup
+4. `<script>` — component logic
 
 ## Props
 
