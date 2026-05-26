@@ -10,61 +10,101 @@ Example of a model:
 ```
 namespace App;
 
+use Runtime.ApiResult;
 use Runtime.BaseModel;
 use Runtime.RenderContainer;
-use Runtime.Serializer;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+use Runtime.Web.RouteInfo;
 use App.ExamplePage;
+use App.Models.User;
 
 class PageModel extends BaseModel
 {
-    string component = classof ExamplePage;
-    string name = "";
-    
-    
-    /**
-     * Init params
-     */
-    void initParams(Map params)
-    {
-        parent(params);
-    }
-    
-    
-    /**
-     * Init widget
-     */
-    void initWidget(Map params)
-    {
-        parent(params);
-    }
-    
-    
-    /**
-     * Serialize model
-     */
-    void serialize(Serializer serializer, Map data)
-    {
-        parent(serializer, data);
-        serializer.process(this, "name", data);
-    }
-    
-    
-    /**
-     * Load data
-     */
-    async void loadData(RenderContainer container)
-    {
-        parent(container);
-    }
-    
-    
-    /**
-     * Build title
-     */
-    void buildTitle(RenderContainer container)
-    {
-        this.layout.setPageTitle("Page");
-    }
+	string component = classof ExamplePage;
+	string name = "";
+	User user = null;
+	
+	
+	/**
+	 * Init params
+	 */
+	void initParams(Map params)
+	{
+		parent(params);
+	}
+	
+	
+	/**
+	 * Init widget
+	 */
+	void initWidget(Map params)
+	{
+		parent(params);
+	}
+	
+	
+	/**
+	 * Serialize model
+	 */
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("name", new StringType());
+		rules.addType("user", new ObjectType{
+			"class_name": classof User,
+		});
+	}
+	
+	
+	/**
+	 * Load data
+	 */
+	async void loadData(RenderContainer container)
+	{
+		await parent(container);
+		
+		RouteInfo route = this.layout.get("route");
+		int id = route.matches.get("user_id");
+		await this.loadUser(id);
+	}
+	
+	
+	/**
+	 * Load user
+	 */
+	async void loadUser(int id)
+	{
+		ApiResult result = this.layout.sendApi({
+			"api_name": "app.user",
+			"method_name": "item",
+			"data":
+			{
+				"pk":
+				{
+					"id": id
+				}
+			}
+		});
+		
+		if (result.isSuccess())
+		{
+			/* Set user by filter rules */
+			this.user = static::filter("user", result.data.get("item"));
+			
+			/* Or set value */
+			this.setValue("user", result.data.get("item"));
+		}
+	}
+	
+	
+	/**
+	 * Build title
+	 */
+	void buildTitle(RenderContainer container)
+	{
+		this.layout.setPageTitle("Page");
+	}
 }
 ```
 
@@ -76,7 +116,7 @@ The serialize function is responsible for model data serialization. Serializatio
 
 If the model loads any data, these data should be added to the serialize function.
 
-The loadData function loads data via API from the backend. It’s called when RenderContainer renders the page.
+The loadData function loads data via API from the backend. It's called when RenderContainer renders the page.
 
 The buildTitle function sets the page title.
 

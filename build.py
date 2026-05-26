@@ -10,7 +10,7 @@ def list_files_recursively(directory):
 
 def create_document(folder, file_name):
     
-    output_file = file_name + ".rule"
+    output_file = file_name + ".md"
     print(output_file)
     
     with open(output_file, "w", encoding="utf-8") as outfile:
@@ -22,4 +22,4 @@ def create_document(folder, file_name):
                         outfile.write(file.read())
                         outfile.write("\n\n")
 
-create_document(["en/baylang"], "baylang_syntax")
+create_document(["en"], "baylang")

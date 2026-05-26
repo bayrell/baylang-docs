@@ -1,42 +1,1819 @@
-# BayLang Documentation Index (English)
-# ================================
+---
+description: BayLang
+groups: baylang
+---
 
-## ⚠️ MAIN RULE
-**ALWAYS READ THE BAYLANG DOCUMENTATION INDEX BEFORE STARTING WORK!**
-- Start with this file (`baylang.rule`) — it contains links to all documentation sections.
-- In case of any questions or problems, look for the answer in the documentation first.
-- The documentation is the primary and only source of truth for BayLang.
+# BayLang Documentation
+
+File `baylang.rule` contains common BayLang syntax and how it use.
+
+BayLang is a full-stack programming language that compiles into PHP and JavaScript. It uses a single codebase for both the server and the client side.
+
+**BayLang Features:**
+- Cross-platform application development (websites, CRM and ERP systems, mobile and desktop applications)
+- Reactivity: automatic page update when data model changes
+- MVC architecture implementation
+- Server-side rendering (SSR) support
+- Website builder support
+- MySQL and SQLite support, with the possibility of adding other DBMS
+
+# Basic Syntax
+
+## Types
+
+```
+int count = 0;
+double price = 9.99;
+bool is_active = false;
+string name = "Hello";
+Vector items = [];
+Map data = {};
+```
+
+## Variables
+
+Use `snake_case` for variables and `CamelCase` for methods.
+
+## Conditions
+
+```
+if (a > b)
+{
+	print("A is greater than B");
+}
+else
+{
+	print("A is less than or equal to B");
+}
+```
+
+## Loops
+
+```
+for (int i = 0; i < items.count(); i++)
+{
+	print(items.get(i));
+}
+```
 
 
-## 1. BayLang Web Framework
-- en/framework/about.md — Framework overview: cross-platform (WordPress, Laravel, PHP, Node.js, Python, Vue.js), MVC, REST API, ready-to-use components.
-- en/framework/api.md — API interaction: sendApi method, BusInterface, Data Bus pattern, microservice communication.
-- en/framework/init_php.md — PHP project initialization: init.php (context setup, modules, providers), index.php (entry point), console.php (CLI entry point).
-- en/framework/install_nodejs.md — Node.js installation: npm install bay-lang, project.json configuration, make_all/watch commands.
-- en/framework/page.md — Page creation: model + component example, route registration, RouteModel with uri/name/model.
-- en/framework/project.md — Project setup: directory structure, ModuleDescription (dependencies, entities, hooks), project.json (compilation config), module.json (bundle config).
-- en/framework/project_php.md — PHP project setup: composer, Docker container, baylang-php compilation, build.sh, project.json for PHP.
-- en/framework/routes.md — Routing: RouteModel, RouteAction, RoutePage, URL parameters, RouteInfo, BaseRoute, getLayoutName, getRoutes.
-- en/framework/seo.md — SEO: buildTitle for title/description, Seo hook, SeoModel (favicon, canonical_url, article_published_time, robots, tags, OpenGraph).
-- en/framework/serialize.md — Data serialization: MapType, VectorType, ObjectType, filter/validate, AssertException, SerializeInterface, custom BaseType, rtl::serialize.
+# Working with Strings
+
+Strings are immutable. Concatenate with `~`.
+
+```
+string message = "Hello";
+string name = "User";
+string greeting = message ~ " " ~ name;
+```
+
+**String library (`rs`):**
+
+```
+int rs::strlen(string s);
+string rs::substr(string s, int start, int len);
+string rs::lower(string s);
+string rs::upper(string s);
+int rs::compare(string a, string b);
+int rs::replace(string search, string item, string s);
+string rs::str_repeat(string s, int n);
+string rs::split(string delimiter, string s, int limit = -1);
+string rs::join(string ch, Vector<string> arr);
+string rs::join_path(Vector arr);
+string rs::trim(string s, string ch = "");
+int rs::indexOf(string s, string search, int offset = 0);
+string rs::format(string s, Dict params = null);
+```
+
+**Example:**
+
+```
+string message = rs::format("Hello %username%", {"username": "User"});
+```
 
 
-## 2. Object-Relational Mapping (ORM)
-- en/orm/about.md — ORM overview: Connection, Query, Record, Relation architecture.
-- en/orm/connection.md — Database connection: ConnectionFactory, ConnectionMySQL, env variables, DatabaseConnection registration in ModuleDescription.
-- en/orm/query.md — Query builder: select/insert/update/delete, where, orderBy, limit/offset/page, join (inner/left), pagination, filter, raw queries, fetchAll/fetchOne.
-- en/orm/record.md — Record class: table schema, annotations (AutoIncrement, BigIntType, Primary, StringType, DateTimeType), save/delete/refresh, getPrimaryKey, isNew/isUpdate/isChanged, assign/intersect.
-- en/orm/relation.md — Relation class: create/fetch records, find/findByPk/findOrCreate, annotations, getAnotations/getAutoIncrement/getPrimaryKeys, toDatabase/fromDatabase conversion, QueryFilter.
+# Data Structures
+
+## Vector (Array)
+
+A Vector is an ordered list of elements. You can add, remove, and search items.
+
+```
+Vector arr = [];
+```
+
+**Basic operations:**
+
+```
+/* Count elements */
+print(arr.count());
+
+/* Get element by index */
+print(arr.get(index));
+print(arr.get(index, default_value));
+
+/* Set element */
+arr.set(index, value);
+
+/* First and last */
+arr.first();
+arr.last();
+```
+
+**Adding and removing:**
+
+```
+arr.push(item);
+arr.remove(index);
+arr.insert(index, new_item);
+
+Vector new_arr = arr.concat(["new item"]);
+arr.appendItems(items);
+
+/* Get a portion of the array */
+arr.slice(offset);
+arr.slice(offset, length);
+```
+
+**Searching:**
+
+```
+int index = arr.indexOf(value);
+
+string item = arr.find(bool (string item) => rs::strlen(item) != 0);
+int index = arr.findIndex(bool (string item) => rs::strlen(item) != 0);
+```
+
+**Functional programming:**
+
+```
+Vector new_arr = arr.map(int (int item) => item * 2);
+
+int sum = arr.reduce(
+	int (int sum, int value) => sum + value, 0
+);
+
+Vector new_arr = arr.filter(bool (int item) => item != 0);
+
+int sum = 0;
+arr.each(void (int item, int index) use (sum) {
+	sum += item;
+});
+```
+
+**Convert Vector to Map:**
+
+```
+Map items = arr.transition(
+	Vector (int value, int index)
+	{
+		return [index, value];
+	}
+);
+```
+
+**Sorting:**
+
+```
+arr.sort();
+arr.sort(int (int a, int b) => a > b);
+```
+
+**Manipulation:**
+
+```
+arr.reverse();
+arr.removeDuplicates();
+arr.flatten();
+```
 
 
-## 3. Widget Library (Runtime.Widget)
-- en/widget/about.md — Widget library overview: basic UI components for rapid web development.
-- en/widget/basic/button.md — Button component: usage, CSS classes (primary, secondary, outline, danger, success, info, warning, small, large, stretch).
-- en/widget/basic/image.md — Image component: src binding, component override, RenderProvider replacement.
-- en/widget/basic/input.md — Input component: name, value, valueChange event.
-- en/widget/basic/select.md — Select component: options list, valueChange event.
-- en/widget/basic/textarea.md — TextArea component: multiline text input, valueChange event.
-- en/widget/basic/texteditable.md — TextEditable component: rich text editing, valueChange event.
-- en/widget/basic/upload_file_button.md — UploadFileButton component: file upload, file event.
-- en/widget/styles.md — CSS variables: dimensions, spacing, color palette (primary/secondary/success/danger/info/warning/text), shadows, border-radius, responsive widths.
-- en/widget/theme_dark.md — Dark theme: theme_dark class, layout.theme binding, CSS transitions, toggleTheme, ThemeDetect hook, cookie persistence.
+## Map (Dictionary)
+
+A Map stores key-value pairs. Keys are strings.
+
+```
+Map items = {};
+
+items.set(key, value);
+items.get(key);
+
+items.concat({"key": "value"});
+```
+
+**Functional programming:**
+
+```
+Map new_map = items.map(
+	int (int value, string key) => value * 2
+);
+
+Map new_map = items.mapWithKeys(
+	Vector (int value, string key) => [key, value * 2]
+);
+
+int sum = items.reduce(
+	int (int sum, int value, string key) => sum + value, 0
+);
+
+Map new_map = items.filter(
+	bool (int value, string key) => value != 0
+);
+
+int sum = 0;
+items.each(
+	void (int value, string key) use (sum) {
+		sum += item;
+	}
+);
+
+Vector arr = items.transition(
+	int (int value, string key) => value
+);
+```
+
+
+# Components
+
+> **⚠️ Important:** Every component MUST be wrapped in a `<class>` tag. This is the root element — without it the component will not compile.
+
+**Required structure:**
+
+```
+<class name="App.Components.IndexPage.IndexPage">
+
+<style>
+	/* CSS styles here */
+</style>
+
+<template>
+	<!-- HTML template here -->
+</template>
+
+<script>
+	/* BayLang logic here */
+</script>
+
+</class>
+```
+
+> **⚠️ Common mistake:** Do not forget to open `<class>` at the top and close `</class>` at the bottom. All other blocks (`<style>`, `<template>`, `<script>`) must be inside `<class>`.
+
+## Connecting Modules with `<use>`
+
+To use external modules or other components, place `<use>` tags **before** the `<script>` block (but still inside `<class>`):
+
+```
+<class name="App.Components.IndexPage.IndexPage">
+
+<use name="Runtime.Widget.Button" component="true" />
+
+<style>
+	.index_page {
+		padding: 5px;
+	}
+</style>
+
+<template>
+	<div class="index_page">
+		<Button>Click</Button>
+	</div>
+</template>
+
+<script>
+	string message = "Hello world!";
+</script>
+
+</class>
+```
+
+**Order inside `<class>`:**
+1. `<use>` — module/component imports (before `<script>`)
+2. `<style>` — CSS styles
+3. `<template>` — HTML markup
+4. `<script>` — component logic
+
+## Props
+
+Props are values passed from a parent component.
+
+```
+<script>
+props string name = "";
+</script>
+```
+
+## Computed Values
+
+Computed values update automatically when their dependencies change.
+
+```
+<script>
+computed string user_name()
+{
+	return this.name;
+}
+</script>
+```
+
+## Events
+
+```
+<template>
+	<button @event:click="this.onClick()">
+		Click
+	</button>
+</template>
+
+<script>
+string message = "User";
+
+void onClick()
+{
+	this.message ~= "!";
+}
+</script>
+```
+
+## Using Other Components
+
+```
+<class name="App.Example">
+
+<use name="Runtime.Widget.Button" component="true" />
+
+<template>
+	<Button>Click</Button>
+</template>
+
+</class>
+```
+
+## Slots
+
+Slots allow you to pass template content into a component.
+
+**Slot definition:**
+
+```
+<template>
+	<div class="box">
+		<div class="box_header">
+			%render this.renderSlot("title");
+		</div>
+		<div class="box_content">
+			%render this.renderSlot("content");
+		</div>
+	</div>
+</template>
+```
+
+**Using the component with slots:**
+
+```
+<Box>
+	<slot name="title">Title</slot>
+	<slot name="content"><p>Content</p></slot>
+</Box>
+```
+
+
+# Models
+
+Models hold the application state and business logic. They are part of the frontend and control how data is stored on the client.
+
+```
+namespace App;
+
+use Runtime.BaseModel;
+use Runtime.RenderContainer;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+
+class PageModel extends BaseModel
+{
+	string component = classof ExamplePage;
+	string name = "";
+
+	void initParams(Map params)
+	{
+		parent(params);
+	}
+
+	void initWidget(Map params)
+	{
+		parent(params);
+	}
+
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("name", new StringType());
+	}
+
+	async void loadData(RenderContainer container)
+	{
+		await parent(container);
+	}
+
+	void buildTitle(RenderContainer container)
+	{
+		this.layout.setPageTitle("Page");
+	}
+}
+```
+
+**Key lifecycle methods:**
+
+- `initParams` — set up model parameters
+- `initWidget` — create and configure child models
+- `serialize` — define which data gets sent to the frontend
+- `loadData` — fetch data from the backend API
+- `buildTitle` — set the page title
+
+## Example Model: User
+
+The `User` model is a common example of a data model in BayLang. It typically stores user information such as name, email, and ID.
+
+```
+namespace App.Models;
+
+use Runtime.BaseDTO;
+use Runtime.Serializer.IntegerType;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+
+class User extends BaseDTO
+{
+	int id = 0;
+	string name = "";
+	string email = "";
+
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("id", new IntegerType());
+		rules.addType("name", new StringType());
+		rules.addType("email", new StringType());
+	}
+}
+```
+
+**Key properties:**
+
+- `id` — unique identifier for the user
+- `name` — user's display name
+- `email` — user's email address
+
+The `serialize` function defines which fields are sent to the frontend. This ensures that only necessary data is transmitted, improving security and performance.
+
+## Loading Models in PageModel
+
+Models can be loaded in `PageModel` via API calls or manually. This is essential for populating the page with data from the backend.
+
+### Example: Loading a User via API
+
+This example shows how to load a User model from the backend using an API call inside `loadData`.
+
+```
+namespace App;
+
+use Runtime.ApiResult;
+use Runtime.BaseModel;
+use Runtime.RenderContainer;
+use Runtime.Serializer.IntegerType;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+use Runtime.Web.RouteInfo;
+use App.Components.UserPage.UserPage;
+use App.Models.User;
+
+class UserPageModel extends BaseModel
+{
+	string component = classof UserPage;
+	int user_id = 0;
+	User user = null;
+	
+	void initParams(Map params)
+	{
+		parent(params);
+		
+		if (params.has("user_id"))
+		{
+			this.user_id = params.get("user_id");
+		}
+	}
+
+	void initWidget(Map params)
+	{
+		parent(params);
+	}
+
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("user_id", new IntegerType());
+		rules.addType("user", new ObjectType{
+			"class_name": classof User,
+		});
+	}
+
+	async void loadData(RenderContainer container)
+	{
+		await parent(container);
+		
+		RouteInfo route = this.layout.get("route");
+		this.user_id = route.matches.get("user_id");
+		await this.loadUser(this.user_id);
+	}
+
+	async void loadUser(int id)
+	{
+		ApiResult result = this.layout.sendApi({
+			"api_name": "app.user",
+			"method_name": "item",
+			"data":
+			{
+				"pk":
+				{
+					"id": id
+				}
+			}
+		});
+		
+		if (result.isSuccess())
+		{
+			this.user = static::filter("user", result.data.get("item"));
+		}
+	}
+}
+```
+
+# Layout
+
+`this.layout` is the global application model. It gives access to:
+
+- Page title (`this.layout.setPageTitle(...)`)
+- Current route
+- List of components and models
+
+
+# Full Program Example
+
+```
+namespace Main;
+
+class App
+{
+	static int main()
+	{
+		print("Hello world!");
+		return 0;
+	}
+}
+```
+
+# Routing Example
+
+Component
+```
+<class name="App.Components.IndexPage.IndexPage">
+
+<template>
+	<div>
+		<h1>{{ this.model.title }}</h1>
+	</div>
+</template>
+
+</class>
+```
+
+Model
+```
+namespace App.Components.IndexPage;
+
+use Runtime.BaseModel;
+use App.Components.IndexPage.IndexPage;
+
+class IndexPageModel extends BaseModel
+{
+	string component = classof IndexPage;
+	string title = "Welcome";
+
+	void buildTitle(RenderContainer container)
+	{
+		this.layout.setPageTitle("Index page");
+	}
+}
+```
+
+# BayLang Template Syntax
+
+## Loops in Templates
+
+Instead of using Vue-like directives such as `<div v-for="item in items">`, use the `%for` statement in BayLang templates.
+
+**Example:**
+
+```
+%for (Map item in items)
+{
+	<div class="item">
+		{{ item.name }}
+	</div>
+}
+```
+
+## Conditional Rendering
+
+Instead of using Vue-like directives such as `v-if`, use the `%if` statement in BayLang templates.
+
+**Example:**
+
+```
+%if (this.model.is_active)
+{
+	<div class="active">
+		This content is active.
+	</div>
+}
+```
+
+## Combining Loops and Conditionals
+
+You can combine `%for` and `%if` in templates for more complex logic.
+
+**Example:**
+
+```
+%for (Map item in items)
+{
+	%if (item.is_visible)
+	{
+		<div class="item visible">
+			{{ item.name }}
+		</div>
+	}
+	else
+	{
+		<div class="item hidden">
+			{{ item.name }} (hidden)
+		</div>
+	}
+}
+```
+
+## Data Binding
+
+BayLang supports data binding in templates using `{{ }}` syntax. You can bind component attributes to dynamic values or use static strings.
+
+**Example with data binding:**
+
+```
+<Input name={{ item.name }} value={{ item.value }} />
+```
+
+**Example without data binding (static values):**
+
+```
+<Input name="email" value={{ item.email }} />
+```
+
+**Combined example with loops:**
+
+```
+%for (Map item in items)
+{
+	<div class="input_group">
+		<Input name={{ item.name }} value={{ item.value }} />
+	</div>
+}
+```
+
+**Example with conditional binding:**
+
+```
+%if (item.is_required)
+{
+	<Input name={{ item.name }} value={{ item.value }} required="true" />
+}
+else
+{
+	<Input name={{ item.name }} value={{ item.value }} />
+}
+```
+
+**Explanation:**
+
+- `{{ item.name }}` — dynamic binding to the `name` attribute
+- `"email"` — static string value (no binding)
+- `{{ item.value }}` — dynamic binding to the `value` attribute
+
+## Event Handling
+
+BayLang uses a special syntax for handling DOM events in templates. You can bind event handlers directly to elements using the `@event:` prefix.
+
+**Example: Input with value change event**
+
+```
+<Input value={{ item.value }} event:valueChange="this.onChange(event.value)" />
+```
+
+**Example: Button with click event**
+
+```
+<Button class="button button--primary" @event:click="this.onClick()">Click</Button>
+```
+
+**Explanation:**
+
+- `event:valueChange` — attaches an event handler to the `valueChange` event of the input
+- `this.onChange(event.value)` — the component method `onChange` with the new value from the event
+- `@event:click` — shorthand for handling the click event
+- `this.onClick()` — the component method `onClick` when the button is clicked
+
+**Full example with events and data binding:**
+
+```
+%for (Map item in items)
+{
+	<div class="input_group">
+		<Input value={{ item.value }} event:valueChange="this.onChange(event.value, item)" />
+		<Button class="button button--primary" @event:click="this.onClick(item)">Select</Button>
+	</div>
+}
+```
+
+# ORM (Object-Relational Mapping)
+
+BayLang provides a powerful ORM system for working with databases. The ORM architecture consists of:
+- **Connection** — Database connection management
+- **Query** — SQL query building
+- **Record** — Data models and entities
+- **Relation** — Query execution and data retrieval
+
+## Defining Records (Data Models)
+
+Records represent database tables as objects:
+
+```
+namespace App.Database;
+
+use Runtime.BaseObject;
+use Runtime.ORM.Record;
+use Runtime.ORM.Annotations.AutoIncrement;
+use Runtime.ORM.Annotations.BigIntType;
+use Runtime.ORM.Annotations.Primary;
+use Runtime.ORM.Annotations.StringType;
+use Runtime.ORM.Annotations.DateTimeType;
+
+class Item extends Record
+{
+	/**
+	 * Returns table name
+	 */
+	pure string getTableName() => "items";
+	
+	/**
+	 * Returns table schema
+	 */
+	pure memorize Collection<BaseObject> schema() =>
+	[
+		/* Fields */
+		new BigIntType{"name": "id"},
+		new StringType{"name": "name"},
+		new StringType{"name": "description"},
+		new BigIntType{"name": "category_id"},
+		new DateTimeType{"name": "gmtime_add", "autocreate": true},
+		new DateTimeType{"name": "gmtime_edit", "autoupdate": true},
+		
+		/* Index */
+		new AutoIncrement{"name": "id"},
+		new Primary{"keys": ["id"]},
+	];
+}
+```
+
+## Query Building
+
+Build SQL queries using the Query object:
+
+```
+use Runtime.ORM.Query;
+
+Query q = new Query()
+	.select(["id", "name"])
+	.from("items")
+	.where("id", "=", "1")
+;
+```
+
+## Working with Relations
+
+Relations provide methods to interact with the database:
+
+```
+use Runtime.ORM.Connection;
+use Runtime.ORM.Query;
+use Runtime.ORM.QueryFilter;
+use Runtime.ORM.Record;
+use Runtime.ORM.Relation;
+
+Relation<Item> relation = new Relation(classof Item);
+```
+
+### Creating and Saving Records
+
+```
+/* Create a new item */
+Record<Item> item = relation.createRecord({
+	"name": "New Item",
+	"description": "Item description"
+});
+
+/* Or create and save directly */
+Item item = new Item();
+item.name = "Item Name";
+await item.save();
+
+/* Update existing item */
+item.name = "Updated Name";
+await item.save();
+
+/* Delete item */
+await item.delete();
+```
+
+### Fetching Data
+
+```
+/* Get all items */
+QueryResult<Map> rows = await relation.fetchAll(
+	relation.select()
+);
+
+/* Get a single record by primary key */
+Record<Item> item = await relation.findByPk({"id": 1});
+
+/* Get a single record by ID */
+Record<Item> item = await relation.findById(1);
+
+/* Find records with filter */
+Vector<QueryFilter> filter = [
+	new QueryFilter("name", "%like%", "Item name")
+];
+Record<Item> item = await relation.findRecord(filter);
+
+/* Find or create */
+Record<Item> item = await relation.findOrCreate({
+	"name": "Unique Item"
+});
+```
+
+### Advanced Query Examples
+
+```
+/* Count items */
+Query q = new Query()
+	.select(["id", "name"])
+	.from("items")
+	.where("category_id", "=", "1")
+	.limit(10)
+	.page(0)
+;
+
+QueryResult<Map> rows = await relation.fetchAll(q);
+
+/* Update with filter */
+Query q = new Query()
+	.update("items")
+	.where("category_id", "=", "1")
+	.values({
+		"status": "active"
+	})
+;
+
+await relation.execute(q);
+
+/* Delete with filter */
+Query q = new Query()
+	.delete("items")
+	.where("id", "=", "1")
+;
+
+await relation.execute(q);
+```
+
+### Working with Record Data
+
+```
+Record<Item> item = await relation.findByPk({"id": 1});
+
+/* Get all data */
+Map data = item.all();
+
+/* Get old data (before changes) */
+Map old_data = item.old();
+
+/* Get specific fields */
+Map partial_data = item.intersect(["id", "name"]);
+
+/* Check if record has changed */
+bool is_changed = item.isChanged();
+
+/* Check if record is new (not saved yet) */
+bool is_new = item.isNew();
+
+/* Check if record was loaded from database */
+bool is_update = item.isUpdate();
+
+/* Assign new data */
+item.assign({
+	"name": "New Name",
+	"description": "Updated description"
+});
+await item.save();
+```
+
+# API Interaction
+
+Api interaction is handled via the `sendApi` method. This allows communication between frontend components and backend services.
+
+## Basic API Call
+
+**Example:**
+
+```
+ApiResult result = await this.layout.sendApi({
+	"api_name": "app.catalog",
+	"method_name": "search",
+	"data":
+	{
+		"search": "product",
+		"page": 0,
+		"limit": 10,
+	},
+});
+
+if (result.isSuccess())
+{
+	/* Handle successful response */
+	Vector<Map> items = result.data.get("items");
+}
+else
+{
+	/* Handle error */
+	rtl::print(result.getError());
+}
+```
+
+## Creating API Endpoints
+
+### Basic API Class
+
+```
+namespace App.Api;
+
+use Runtime.Serializer.MapType;
+use Runtime.Serializer.StringType;
+use Runtime.Web.Annotations.ApiMethod;
+use Runtime.Web.BaseApi;
+
+class ExampleApi extends BaseApi
+{
+	pure string getApiName() => "app.example";
+	
+	
+	/**
+	 * Returns data rules
+	 */
+	void getDataRules(MapType rules)
+	{
+		rules.addType("name", new StringType());
+	}
+	
+	
+	@ApiMethod{ "name": "index" }
+	async void actionIndex()
+	{
+		this.filterData();
+		
+		string name = this.data.get("name");
+		this.success({
+			"data": {
+				"name": name,
+			}
+		})
+	}
+}
+```
+
+**Register API in module:**
+
+```
+namespace App;
+
+use Runtime.Entity.Entity;
+use Runtime.Web.Annotations.Api;
+
+class ModuleDescription
+{
+	pure string getModuleName() => "App";
+	pure string getModuleVersion() => "1.0";
+	pure Map<string> requiredModules() => {
+		"Runtime": "*"
+	};
+	pure Vector<Entity> modules() => [
+		new Api("App.Api.ExampleApi")
+	];
+}
+```
+
+### SearchApi - For Reading Data
+
+The `SearchApi` module provides functionality for searching and retrieving data from a database.
+
+**Key Features:**
+- Automatic query generation based on request parameters
+- Input data validation
+- Flexible field definition
+- Query customization (filtering, sorting, joins)
+
+**Example:**
+
+```
+namespace App.Admin.Api;
+
+use Runtime.Serializer.MapType;
+use Runtime.ORM.Query;
+use Runtime.Web.Annotations.ApiMethod;
+use Runtime.Widget.Api.SearchApi;
+use Runtime.WordPress.Admin.AdminMiddleware;
+use App.Database.Item;
+
+
+class ItemSearchApi extends SearchApi
+{
+	pure string getApiName() => "admin.item";
+	pure string getRecordName() => classof Item;
+	
+	Vector<Middleware> getMiddleware() =>
+	[
+		new AdminMiddleware(),
+	];
+	
+	void getDataRules(MapType rules)
+	{
+	}
+	
+	Vector<string> getItemFields(string action)
+	{
+		Map fields =
+		[
+			"id",
+			"name"
+		];
+		if (action == "convert")
+		{
+			/* Add inner join fields */
+		}
+		return fields;
+	}
+	
+	async void buildQuery(Query q)
+	{
+		await parent(q);
+	}
+	
+	@ApiMethod{ "name": "search" }
+	async void actionSearch()
+	{
+		await parent();
+	}
+	
+	@ApiMethod{ "name": "item" }
+	async void actionItem()
+	{
+		await parent();
+	}
+}
+```
+
+### SaveApi - For Creating/Updating/Deleting Data
+
+The `SaveApi` module provides functionality for saving (creating/updating) and deleting data in a database.
+
+**Key Features:**
+- Automatic save/update detection (based on primary key)
+- Strict data validation
+- Field management (allowed fields for saving)
+- Lifecycle hooks for business logic
+
+**Example:**
+
+```
+namespace App.Api;
+
+use Runtime.Widget.Api.SaveApi;
+use Runtime.Widget.Api.Rules.UniqueRules;
+use Runtime.WordPress.Admin.AdminMiddleware;
+use App.Database.Item;
+
+
+class ItemSaveApi extends SaveApi
+{
+	pure string getApiName() => "app.item";
+	pure string getRecordName() => classof Item;
+	
+	Vector<Middleware> getMiddleware() =>
+	[
+		new AdminMiddleware(),
+	];
+	
+	Vector<BaseRule> rules() =>
+	[
+		new UniqueRules{"field_name": "name"},
+	];
+	
+	void getDataRules(MapType rules)
+	{
+	}
+	
+	void getItemRules(MapType rules)
+	{
+		rules.addType("id", new IntegerType());
+		rules.addType("name", new Required());
+		rules.addType("name", new StringType());
+		rules.addType("description", new StringType());
+		rules.addType("category_id", new IntegerType());
+	}
+	
+	Vector<string> getItemFields() =>
+	[
+		"id",
+		"name",
+		"description",
+		"category_id",
+		"gmtime_add",
+		"gmtime_edit",
+	];
+	
+	Vector<string> getSaveFields() =>
+	[
+		"name",
+		"description",
+		"category_id",
+	];
+	
+	async void buildQuery(Query q)
+	{
+		await parent(q);
+		
+		if (this.foreign_key && this.foreign_key.has("category_id"))
+		{
+			q.where("category_id", "=", this.foreign_key.get("category_id"));
+		}
+	}
+	
+	async void onSaveBefore()
+	{
+		await parent();
+	}
+	
+	async void onSaveAfter()
+	{
+		await parent();
+	}
+	
+	async void onDeleteBefore()
+	{
+		await parent();
+	}
+	
+	async void onDeleteAfter()
+	{
+	}
+	
+	@ApiMethod{ "name": "save" }
+	async void actionSave()
+	{
+		await parent();
+	}
+	
+	@ApiMethod{ "name": "delete" }
+	async void actionDelete()
+	{
+		await parent();
+	}
+}
+```
+
+# Example: User Management Page
+
+This section demonstrates a complete user management page with listing, adding, editing, and deleting functionality using BayLang components and models.
+
+## UserPage Component
+
+The `UserPage` component displays a table of users with action buttons for managing them.
+
+```
+<class name="App.UserPage">
+
+<use name="Runtime.Widget.Button" component="true" />
+<use name="Runtime.Widget.RowButtons" component="true" />
+<use name="Runtime.Widget.Table.TableWrap" component="true" />
+
+<style>
+.user_page{
+}
+</style>
+
+<template>
+    <div class="user_page">
+        <RowButtons>
+            <Button class="button button--primary"
+                @event:click="this.model.manager.showAddDialog()"
+            >
+                Add
+            </Button>
+        </RowButtons>
+        <TableWrap model={{ this.model.manager }}>
+            <slot name="row_buttons" args="Map item, Map field, int row_number">
+                <RowButtons>
+                    <Button class="button"
+                        @event:click="this.model.manager.showEditDialog(item)"
+                    >
+                        Edit
+                    </Button>
+                    <Button class="button button--danger"
+                        @event:click="this.model.manager.showDeleteDialog(item)"
+                    >
+                        Delete
+                    </Button>
+                </RowButtons>
+            </slot>
+        </TableWrap>
+    </div>
+</template>
+
+</class>
+```
+
+**Key features:**
+- Uses `TableWrap` component to display data
+- Integrates `RowButtons` for action controls
+- `showAddDialog()`, `showEditDialog()`, `showDeleteDialog()` methods for CRUD operations
+
+## UserPageModel Model
+
+The `UserPageModel` manages the state and logic for the user page, including table configuration and CRUD operations.
+
+```
+namespace App;
+
+use Runtime.ApiResult;
+use Runtime.BaseModel;
+use Runtime.RenderContainer;
+use Runtime.Serializer.IntegerType;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+use Runtime.Web.RouteInfo;
+use Runtime.Widget.Table.TableManager;
+
+class UserPageModel extends BaseModel
+{
+	string component = classof UserPage;
+	TableManager manager = null;
+	
+	
+	/**
+	 * Serialize object
+	 */
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("manager", new ObjectType());
+	}
+	
+	
+	/**
+	 * Init params
+	 */
+	void initParams(Map params)
+	{
+		parent(params);
+	}
+	
+	
+	/**
+	 * Init widget
+	 */
+	void initWidget(Map params)
+	{
+		parent(params);
+		
+		/* Инициализация TableManager */
+		this.manager = this.createWidget(classof TableManager, {
+			"autoload": true,
+			"api_name": "app.user",
+			"title": method this.getTitle,
+			"item_rules": {
+				"name": new StringType(),
+				"email": new StringType(),
+				"role": new StringType(),
+			},
+			"primary_rules": {
+				"id": new IntegerType(),
+			},
+			"form_fields":
+			[
+				{
+					"name": "name",
+					"label": "Name",
+					"component": "Runtime.Widget.Input",
+				},
+				{
+					"name": "email",
+					"label": "Email",
+					"component": "Runtime.Widget.Input",
+				},
+				{
+					"name": "role",
+					"label": "Role",
+					"component": "Runtime.Widget.Select",
+					"props":
+					{
+						"options":
+						[
+							{"key": "admin", "value": "Admin"},
+							{"key": "user", "value": "User"},
+						]
+					}
+				}
+			],
+			"table_fields":
+			[
+				{
+					"name": "row_number",
+				},
+				{
+					"name": "name",
+					"label": "Name",
+				},
+				{
+					"name": "email",
+					"label": "Email",
+				},
+				{
+					"name": "role",
+					"label": "Role",
+				},
+				{
+					"name": "buttons",
+					"slot": "row_buttons"
+				}
+			]
+		});
+	}
+	
+	
+	/**
+	 * Load data
+	 */
+	async void loadData(RenderContainer container)
+	{
+		await parent(container);
+	}
+	
+	
+	/**
+	 * Build title
+	 */
+	void buildTitle(RenderContainer container)
+	{
+		this.layout.setPageTitle("Users page");
+	}
+	
+	
+	/**
+	 * Returns title
+	 */
+	string getTitle(string action, Map title)
+	{
+		if (action == "add") return "Create user";
+		else if (action == "edit") return "Edit user";
+		else if (action == "delete") return "Delete user";
+		else if (action == "delete_message") return "Delete";
+		return "";
+	}
+}
+```
+
+**Key features:**
+- Uses `TableManager` for data grid functionality
+- Configures form fields for add/edit dialogs
+- Defines table columns for display
+- Implements title generation for different actions
+
+# TableWrap and TableManager
+
+`TableWrap` and `TableManager` are components for displaying and managing tabular data in BayLang applications.
+
+## TableWrap Component
+
+The `TableWrap` component provides a flexible container for displaying data with additional slots for customization.
+
+### Slots
+
+`TableWrap` supports several slots to customize its appearance and functionality:
+
+- **`table`** — Main slot for table content. Allows replacing the default table with a custom layout (e.g., a list or grid view).
+- **`top_buttons`** — Slot for buttons/controls at the top of the table (e.g., "Add", "Export").
+- **`filter`** — Slot for filter controls (search, dropdowns, etc.).
+- **`row_buttons`** — Slot for action buttons per row (e.g., "Edit", "Delete").
+
+### Example: Custom Layout with TableWrap
+
+Instead of a traditional table, you can use the `table` slot to display data as a list:
+
+```
+<class name="App.Components.CustomPage.CustomPage">
+
+<use name="Runtime.Widget.Table.TableWrap" component="true" />
+
+<template>
+    <TableWrap model={{ this.model.manager }}>
+        <!-- Custom top buttons -->
+        <slot name="top_buttons">
+            <Button class="button button--primary">Add New</Button>
+        </slot>
+        
+        <!-- Custom filter -->
+        <slot name="filter">
+            <Input placeholder="Search..." />
+        </slot>
+        
+        <!-- Custom table layout (list view) -->
+        <slot name="table">
+            %for (Map item in this.model.manager.items)
+            {
+                <div class="list-item">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                </div>
+            }
+        </slot>
+        
+        <!-- Row buttons -->
+        <slot name="row_buttons" args="Map item, Map field, int row_number">
+            <Button @event:click="this.model.manager.showEditDialog(item)">Edit</Button>
+        </slot>
+    </TableWrap>
+</template>
+
+</class>
+```
+
+## TableManager Configuration
+
+`TableManager` is a model that manages table data, including configuration for form fields and table columns.
+
+### Form Fields Configuration
+
+Form fields define how data is displayed and edited in dialogs. Each field can have several properties:
+
+- **`name`** — Field identifier.
+- **`label`** — Display label.
+- **`component`** — UI component (e.g., `Runtime.Widget.Input`, `Runtime.Widget.Select`).
+- **`value`** — Function to extract the display value from an item.
+- **`visible`** — Function to determine if the field should be displayed.
+
+#### Using `value` Function
+
+The `value` function allows you to customize how a field's value is extracted from the data item.
+
+**Example:**
+
+```
+"form_fields":
+[
+    {
+        "name": "full_name",
+        "label": "Full Name",
+        "component": "Runtime.Widget.Input",
+        "value": string (Map item) => item.get("first_name") ~ " " ~ item.get("last_name")
+    }
+]
+```
+
+#### Using `visible` Function
+
+The `visible` function controls whether a field is displayed based on conditions.
+
+**Example:**
+
+```
+"form_fields":
+[
+    {
+        "name": "admin_notes",
+        "label": "Admin Notes",
+        "component": "Runtime.Widget.Textarea",
+        "visible": bool (Map item) => item.get("role") == "admin"
+    }
+]
+```
+
+### Example: TableManager with Custom Form Fields
+
+```
+namespace App;
+
+use Runtime.BaseModel;
+use Runtime.Serializer.IntegerType;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+use Runtime.Widget.Table.TableManager;
+
+class UserPageModel extends BaseModel
+{
+	TableManager manager = null;
+	
+	void initWidget(Map params)
+	{
+		parent(params);
+		
+		this.manager = this.createWidget(classof TableManager, {
+			"api_name": "app.user",
+			"form_fields":
+			[
+				{
+					"name": "full_name",
+					"label": "Full Name",
+					"component": "Runtime.Widget.Input",
+					"value": string (Map item) => item.get("first_name") ~ " " ~ item.get("last_name")
+				},
+				{
+					"name": "admin_notes",
+					"label": "Admin Notes",
+					"component": "Runtime.Widget.Textarea",
+					"visible": bool (Map item) => item.get("role") == "admin"
+				}
+			],
+			"table_fields":
+			[
+				{
+					"name": "full_name",
+					"label": "Name"
+				},
+				{
+					"name": "email",
+					"label": "Email"
+				}
+			]
+		});
+	}
+}
+```
+
+# TableManager with SelectModel (Dynamic Options)
+
+This section demonstrates how to use `SelectModel` to load options dynamically from a database/API within `TableManager`.
+
+## SelectModel Overview
+
+The `SelectModel` (defined in `lib/Runtime.Widget/bay/SelectModel.bay`) allows rendering select inputs.
+- It stores options in `Vector<Map> options`.
+- It supports dynamic data loading via the `loadData` method.
+- It can define custom option structures using `options_type`.
+
+## Dynamic Loading in TableManager
+
+When configuring `TableManager`, you can define a form field as a `Runtime.Widget.Select` component. To populate it dynamically:
+
+1.  Define the field in `form_fields`.
+2.  Set the component to `Runtime.Widget.Select`.
+3.  Implement `loadData` in your `PageModel` to fetch options and assign them to the specific `SelectModel` instance.
+
+### Example: Dynamic Select in UserPageModel
+
+In this example, we load roles from an API instead of hardcoding them.
+
+```
+namespace App;
+
+use Runtime.ApiResult;
+use Runtime.BaseModel;
+use Runtime.RenderContainer;
+use Runtime.Serializer.IntegerType;
+use Runtime.Serializer.ObjectType;
+use Runtime.Serializer.StringType;
+use Runtime.Web.RouteInfo;
+use Runtime.Widget.Table.TableManager;
+use Runtime.Widget.SelectModel;
+
+class UserPageModel extends BaseModel
+{
+	string component = classof UserPage;
+	TableManager manager = null;
+	SelectModel role_select = null;
+	
+	
+	/**
+	 * Serialize object
+	 */
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("manager", new ObjectType());
+	}
+	
+	
+	/**
+	 * Init params
+	 */
+	void initParams(Map params)
+	{
+		parent(params);
+	}
+	
+	
+	/**
+	 * Init widget
+	 */
+	void initWidget(Map params)
+	{
+		parent(params);
+		
+		/* Initialize SelectModel for roles */
+		this.role_select = this.createWidget(classof SelectModel, {
+			"options_type": {
+				"key": new StringType(),
+				"value": new StringType(),
+			}
+		});
+		
+		/* Initialize TableManager */
+		this.manager = this.createWidget(classof TableManager, {
+			"autoload": true,
+			"api_name": "app.user",
+			"title": method this.getTitle,
+			"item_rules": {
+				"name": new StringType(),
+				"email": new StringType(),
+				"role": new StringType(),
+			},
+			"primary_rules": {
+				"id": new IntegerType(),
+			},
+			"form_fields":
+			[
+				{
+					"name": "name",
+					"label": "Name",
+					"component": "Runtime.Widget.Input",
+				},
+				{
+					"name": "email",
+					"label": "Email",
+					"component": "Runtime.Widget.Input",
+				},
+				{
+					"name": "role",
+					"label": "Role",
+					"component": "Runtime.Widget.Select",
+					/* Pass the model instance to the component */
+					"model": this.role_select 
+				}
+			],
+			"table_fields":
+			[
+				{
+					"name": "row_number",
+				},
+				{
+					"name": "name",
+					"label": "Name",
+				},
+				{
+					"name": "email",
+					"label": "Email",
+				},
+				{
+					"name": "role",
+					"label": "Role",
+				},
+				{
+					"name": "buttons",
+					"slot": "row_buttons"
+				}
+			]
+		});
+	}
+	
+	
+	/**
+	 * Load data
+	 */
+	async void loadData(RenderContainer container)
+	{
+		await parent(container);
+		
+		/* Load options for the role select dynamically */
+		await this.loadRoleOptions();
+	}
+	
+	
+	/**
+	 * Load role options from API
+	 */
+	async void loadRoleOptions()
+	{
+		ApiResult result = await this.layout.sendApi({
+			"api_name": "app.role",
+			"method_name": "list",
+			"data": {}
+		});
+		
+		if (result.isSuccess())
+		{
+			Vector<Map> roles = result.data.get("roles");
+			Vector options = roles.map(Map (Map role) => {
+				"key": role.get("id"),
+				"value": role.get("name"),
+			});
+			
+			/* Set options to the SelectModel instance */
+			this.role_select.setOptions(roles);
+		}
+	}
+	
+	
+	/**
+	 * Build title
+	 */
+	void buildTitle(RenderContainer container)
+	{
+		this.layout.setPageTitle("Users page");
+	}
+	
+	
+	/**
+	 * Returns title
+	 */
+	string getTitle(string action, Map title)
+	{
+		if (action == "add") return "Create user";
+		else if (action == "edit") return "Edit user";
+		else if (action == "delete") return "Delete user";
+		else if (action == "delete_message") return "Delete";
+		return "";
+	}
+}
+```
+
+**Key Points:**
+- `role_select` is created as a child widget in `initWidget`.
+- It is passed to the `TableManager` form field definition via `"model": this.role_select`.
+- In `loadData`, we call `await this.loadRoleOptions()` which fetches data from an API.
+- We update the select model using `this.role_select.setOptions(roles)`.
+
+# Filter in TableManager
+
+To add filter you should:
+
+```
+use Runtime.Widget.Table.FilterModel;
+
+class UserPageModel extends BaseModel
+{
+	FilterModel filter = null;
+
+	static void serialize(ObjectType rules)
+	{
+		parent(rules);
+		rules.addType("filter", new ObjectType());
+	}
+
+	void initWidget()
+	{
+		this.filter = this.createWidget(classof FilterModel, {
+			"fields":
+			{
+				"name": "name",
+				"label": "Name",
+				"component": "Runtime.Widget.Input",
+			}
+		});
+	}
+}
+```
+
+Add component in table wrap slot filter:
+```
+<TableWrap>
+	<slot name="filter">
+		%render this.renderWidget(this.model.filter);
+	</slot>
+</TableWrap>
+```
